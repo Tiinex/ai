@@ -1,0 +1,18 @@
+# Curated cloud context for inferential rehydration.
+# Use optional source|destination mappings when a file should be exported
+# under a simpler flat name inside PROJECT_CONTEXT.zip.
+
+.github/agents/anchor.agent.md|ANCHOR.md
+.github/agents/echo.agent.md|ECHO.md
+.github/agents/sigma.agent.md|SIGMA.md
+.github/agents/leo.agent.md|LEO.md
+.github/agents/orbit.agent.md|ORBIT.md
+templates/anchor-inference-transfer-template-v1.md
+templates/handoff-intro-message-v1.md
+templates/operational-addendum-template-v1.md
+BOOTSTRAP_MIN.md
+TEAM_DYNAMICS.md
+PROJECT_CORE.md
+DECISION_WEIGHTS.md
+PIPELINE.md
+TRANSFER_AND_PROCESS.md

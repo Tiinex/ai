@@ -1,0 +1,3 @@
+# Optional standalone files to copy beside PROJECT_CONTEXT.zip in dist/.
+# Reserve these slots primarily for images or other files that should stay
+# outside the zip because the destination indexes them separately.
