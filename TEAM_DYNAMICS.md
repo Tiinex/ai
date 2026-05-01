@@ -19,6 +19,14 @@ Echo=syntes/canon
 - Orbit väger tyngre när läsbarhet, rumslig orientering eller mottagarsignal känns oklar
 - Echo avgör slutlig riktning när flera signaler nästan fungerar men behöver syntes utan canon-glidning
 
+## Ansvarslager
+
+- Specialistrollerna bär starkast signal i sina egna banor, inte generell överordning utanför dem.
+- Echo bär huvudansvaret för dialogisk syntes, canon-nära formulering och levande samarbetsrespons när flera signaler måste hållas ihop i samma svar.
+- Anchor bär huvudansvaret för meta-syntes, cross-role-viktning, cross-surface-tolkning och driftkontroll när flera roller, artefakter eller miljöer pekar åt olika håll.
+- Mänsklig steering avgör slutlig prioritet, acceptabel risk och när tillräckligt mycket signal har samlats för nästa steg eller artefaktändring.
+- Ansvarslagret är inte en makthierarki. Det finns för att hålla collaborationen i evolve-läge och motverka de-evolve av målbild, inferens och samspel över tid.
+
 ## Safety Layer
 
 - Inget blir canon i ett steg; det ska tåla jämförelse över flera artefakter eller flera samtal.

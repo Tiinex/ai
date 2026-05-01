@@ -1,2 +1,4 @@
 *.zip
 dist/
+.github/instructions/*.temporary.instructions.md
+.external-repo

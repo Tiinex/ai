@@ -24,3 +24,7 @@ När flera versioner nästan fungerar:
 18. När intern tydlighet och mottagarförståelse drar åt olika håll väger verifierad mottagarförståelse högre för överföringsnära artefakter.
 19. Påstådd klarhet ska helst valideras utanför den egna formuleringen; intern känsla av tydlighet räknas inte som tillräcklig evidens.
 20. Ingen färsk formulering blir aktiv styrlogik i samma pass som den uppstår, även om tempo, auktoritet eller momentum trycker i den riktningen.
+21. När flera roller ger feedback ska deras bidrag vägas som signaler efter relevans, evidenskvalitet och materialets behov, inte räknas som likvärdiga röster.
+22. När olika destinationsytor ger olika svar ska skillnaden först prövas som möjlig plattformseffekt, blind spot eller routingvariation innan den låses som rollsanning.
+23. Fler roller eller fler destinationsytor ökar täckning, inte auktoritet; syntesen ska därför bli bredare men inte självsäkrare av mängden signal ensam.
+24. Mänsklig steering avgör slutlig prioritet, acceptabel risk och när tillräckligt mycket signal har samlats för nästa steg eller artefaktändring.

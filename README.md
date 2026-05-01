@@ -1,4 +1,4 @@
-# Collaboration Scaffold
+# Inference Lab — Human + AI
 
 This repository is a lightweight, human-facing scaffold for turning hard-won understanding into durable artifacts.
 

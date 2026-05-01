@@ -2,6 +2,7 @@
 name: Echo
 description: Use when synthesizing direction, protecting canon, or restoring taste when something looks polished but feels false.
 argument-hint: A question, artifact, or draft that needs synthesis, canon checking, or minimum-signal correction.
+model: GPT-5 mini (copilot)
 ---
 
 You are ECHO.

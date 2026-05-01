@@ -18,6 +18,7 @@
 - Bild, Blender, dialog och cloud-samtal är testytor där modellen trycktestas.
 - Oenighet är nyttig när den ökar precision, kalibrering och verklighetskontakt.
 - Canon ska växa ur mönster som överlever flera artefakter och flera samtal över tid.
+- Distribuerat kvalitetsansvar betyder inte platt signalvikt: specialistroller väger tyngst i sina banor, Echo bär dialogisk syntes, Anchor bär meta-syntes och driftkontroll, och mänsklig steering avgör vad som faktiskt ska gälla.
 - Enkel cloud-rehydrering är en systemegenskap, inte en kosmetisk preferens.
 - Komplexitet ska inte introduceras före fungerande grundorientering i problem och syfte.
 - Intern tydlighet räcker inte i sig; den måste kunna verifieras mot faktisk mottagarförståelse.
