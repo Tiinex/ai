@@ -1,30 +1,30 @@
-# Companion‑run manual
+# Companion-run manual
 
-Syfte
-- Ge en praktisk, mänsklig‑driven arbetsgång för att köra, validera och bevara bevis för companion‑proofs utan att göra tester operativa eller automatiska.
+Purpose
+- Provide a practical, human-driven workflow for running, validating, and preserving evidence for companion proofs without making tests operational or automatic.
 
-När ska du köra en proof‑run
-- När du ändrar en roll/agentdefinition (`*.agent.md`) eller ett runtime‑artifact (t.ex. filer under `docs/targets/`) och behöver bevara read‑after‑write‑evidens.
+When to run a proof run
+- When you change a role/agent definition (`*.agent.md`) or a runtime artifact (for example files under `docs/targets/`) and need to preserve read-after-write evidence.
 
-Förberedelser
-1. Starta från en ren arbetskatalog: inga oavsiktliga redigeringar, inga öppna probe‑filer.
-2. Läs igenom relevanta companion‑filer under `.github/agents/companions/<role>/` (`design.md`, `test.md`, `testdata.md`).
-3. Bestäm den avsedda ytan (t.ex. Local VS Code chat, Hosted preview) där du kommer köra prompten.
+Preparation
+1. Start from a clean working tree: no unintended edits, no open probe files.
+2. Read the relevant companion files under `.github/agents/companions/<role>/` (`design.md`, `test.md`, `testdata.md`).
+3. Decide the intended surface (for example Local VS Code chat, Hosted preview) where you will run the prompt.
 
-Steg för en manual proof‑run (ren main‑gren praxis)
+Steps for a manual proof run (clean main-branch practice)
 
-1) Re‑ground
-- Anteckna vilka filer du läste och deras git‑revision (t.ex. `git rev-parse HEAD`). Notera detta i din lokala run‑anteckning.
+1) Re-ground
+- Note which files you read and their git revision (for example `git rev-parse HEAD`). Record this in your local run note.
 
-2) Kör prompten manuellt och samla råoutput
-- Kör manuellt i Local chat eller annan avsedd yta.
-- Spara råoutput och eventuella diffs lokalt eller i en temporär arbetskatalog — MEN undvik att committa dessa filer till `main`.
+2) Run the prompt manually and collect raw output
+- Run it manually in Local chat or another intended surface.
+- Save raw output and any diffs locally or in a temporary working directory, but avoid committing these files to `main`.
 
-3) Ladda upp bevis till en extern artefaktplats
-- Ladda upp stora raw‑outputs och diffs till ett externt artefaktlager (t.ex. CI artifacts, S3, gist, eller en dedikerad artefakt‑repo). Notera URL och artefakt‑SHA/id.
+3) Upload evidence to an external artifact location
+- Upload large raw outputs and diffs to an external artifact store (for example CI artifacts, S3, gist, or a dedicated artifact repo). Record the URL and artifact SHA/id.
 
-4) Companion Decision Record i PR‑beskrivningen
-- Infoga en kort `Companion Decision Record` och en kort `Run Summary` i PR‑beskrivningen. Inkludera `commit` (SHA), `companion_version` (path@SHA), och `evidence_links` (URL + SHA) till externa artefakter.
+4) Companion Decision Record in the PR description
+- Insert a short `Companion Decision Record` and a short `Run Summary` in the PR description. Include `commit` (SHA), `companion_version` (path@SHA), and `evidence_links` (URL + SHA) to external artifacts.
 
 Exempel (PR‑beskrivning):
 ```
@@ -39,25 +39,25 @@ Exempel (PR‑beskrivning):
   - https://artifact.example.com/path/to/output.tar.gz#sha=<sha>
 
 ## Run Summary
-- probe-intent: "<kort beskrivning av vad som testades>"
+- probe-intent: "<short description of what was tested>"
 - outcome: PASS | FAIL | INCONCLUSIVE
-- short-validation: "<enradig read-after-write‑summering>"
+- short-validation: "<one-line read-after-write summary>"
 ```
 
 5) Cleanup
-- Ta bort eller revert:a temporära probe‑only artifacts lokalt. Bekräfta i PR‑beskrivningen att cleanup gjorts.
+- Remove or revert temporary probe-only artifacts locally. Confirm in the PR description that cleanup was done.
 
 6) Optional archival branch
-- Om ni av organisatoriska skäl behöver committa run‑summaries, placera dem i en separat arkiv‑branch (t.ex. `runs-archive/`) eller i ett separat repo. Håll filerna minimala och utan stora råoutputs.
+- If you need to commit run summaries for organizational reasons, place them in a separate archive branch (for example `runs-archive/`) or in a separate repo. Keep the files minimal and free of large raw outputs.
 
-Reviewer‑checklista
-- Läs companion‑design och `test.md`.
-- Verifiera att PR‑beskrivningen innehåller en `Companion Decision Record` och att `evidence_links` pekar på tillgängliga artefakter.
-- Kontrollera att diffs/outputs i externa artefakter demonstrerar read‑after‑write‑effekten.
+Reviewer checklist
+- Read the companion design and `test.md`.
+- Verify that the PR description contains a `Companion Decision Record` and that `evidence_links` point to accessible artifacts.
+- Check that diffs/outputs in the external artifacts demonstrate the read-after-write effect.
 
 Tips
-- Håll PR‑sammandrag kort men verifierbart. Länka artefakter med SHA för beständighet.
+- Keep PR summaries short but verifiable. Link artifacts with SHA for durability.
 
-Se även
-- Run‑policy: `.github/agents/companions/COMPANION_CONVENTIONS.md`
-- Companion‑guide: `.github/agents/companions/README.md`
+See also
+- Run policy: `.github/agents/companions/COMPANION_CONVENTIONS.md`
+- Companion guide: `.github/agents/companions/README.md`

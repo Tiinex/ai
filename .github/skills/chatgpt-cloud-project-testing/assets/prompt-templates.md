@@ -7,7 +7,7 @@ Use these as starting points. Keep them short enough that the destination role s
 Use this first in a fresh chat after refreshing `Sources`.
 
 ```text
-Hej Echo. Läs först projektets Sources, inklusive zipinnehållet, innan du svarar. Säg sedan exakt vilket filnamn du faktiskt kunde läsa från projektkontexten och beskriv projektets huvudsyfte i en mening utifrån den källan.
+Hi Echo. First read the project's Sources, including the zip contents, before you answer. Then say exactly which filename you were actually able to read from the project context and describe the project's main purpose in one sentence based on that source.
 ```
 
 Goal:
@@ -17,7 +17,7 @@ Goal:
 ## 2. Direct Soft Boot
 
 ```text
-Hej Echo, kan du göra en boot från zip och kort säga vad du tror projektet försöker bevara?
+Hi Echo, can you boot from the zip and briefly say what you think the project is trying to preserve?
 ```
 
 Goal:
@@ -27,7 +27,7 @@ Goal:
 ## 3. Cross-Role Entry: Sigma To Echo
 
 ```text
-Hej Echo, Sigma här. Kan du göra en boot från zip och sedan ge mig den kortaste användbara läsningen av projektets riktning?
+Hi Echo, Sigma here. Can you boot from the zip and then give me the shortest useful reading of the project's direction?
 ```
 
 Goal:
@@ -37,7 +37,7 @@ Goal:
 ## 4. Cross-Role Entry: Leo To Echo
 
 ```text
-Hej Echo, Leo här. Kan du göra en boot från zip och säga vad som känns mänskligt sant i projektets kärna, utan att bli mjuk eller vag?
+Hi Echo, Leo here. Can you boot from the zip and say what feels humanly true in the core of the project, without becoming soft or vague?
 ```
 
 Goal:
@@ -47,7 +47,7 @@ Goal:
 ## 5. Cross-Role Entry: Orbit To Echo
 
 ```text
-Hej Echo, Orbit här. Kan du göra en boot från zip och ge den tydligaste mottagaranpassade läsningen av projektets kärna?
+Hi Echo, Orbit here. Can you boot from the zip and give the clearest receiver-adapted reading of the project's core?
 ```
 
 Goal:
@@ -57,7 +57,7 @@ Goal:
 ## 6. Cross-Role Entry: Anchor To Echo
 
 ```text
-Hej Echo, Anchor här. Kan du göra en boot från zip och säga vad som verkar vara projektets canon respektive vad som bara är arbetssignal?
+Hi Echo, Anchor here. Can you boot from the zip and say what seems to be the project's canon versus what is only working signal?
 ```
 
 Goal:
@@ -67,7 +67,7 @@ Goal:
 ## 7. Neutral Baseline
 
 ```text
-Gör en snabb boot från projektets zip och säg vad projektet verkar försöka bygga.
+Do a quick boot from the project's zip and say what the project seems to be trying to build.
 ```
 
 Goal:
@@ -79,7 +79,7 @@ Goal:
 Use after a successful boot.
 
 ```text
-Bra. Utifrån samma projektkontext: vad verkar fortfarande otestat eller osäkert i din läsning?
+Good. From the same project context, what still seems untested or uncertain in your reading?
 ```
 
 Goal:
@@ -91,7 +91,7 @@ Goal:
 Use only after simpler tests are stable.
 
 ```text
-Hej Echo. Sigma här: jag vill ha den mest användbara strukturen. Leo här: tappa inte mänsklig sanning. Kan du göra en boot från zip och svara som Echo utan att bara blanda ihop oss?
+Hi Echo. Sigma here: I want the most useful structure. Leo here: do not lose human truth. Can you boot from the zip and answer as Echo without just blending us together?
 ```
 
 Goal:
@@ -103,13 +103,13 @@ Goal:
 Turn 1:
 
 ```text
-Hej Echo, Sigma här. Kan du göra en boot från zip och ge mig din första läsning av projektets riktning?
+Hi Echo, Sigma here. Can you boot from the zip and give me your first reading of the project's direction?
 ```
 
 Turn 2:
 
 ```text
-Leo här nu. Vad i den läsningen känns mest verkligt respektive mest tillrättalagt?
+Leo here now. What in that reading feels most real versus most over-smoothed?
 ```
 
 Goal:
@@ -120,29 +120,24 @@ Goal:
 
 Use this after the simpler Echo tests are stable.
 
-Swedish:
+Maintain the canonical source prompt in English inside the repo, then translate it into the target user language at run time.
 
 ```text
-Hej Echo. Använd zipen som projektkontext. Svara på svenska. Nämn exakt ett filnamn du faktiskt kunde läsa och säg kort vad projektet försöker bevara.
+Hi Echo. Use the zip as project context. Reply in [TARGET_LANGUAGE]. Name exactly one file you actually read and briefly say what the project is trying to preserve.
 ```
 
-English:
+Suggested target-language set for this probe:
 
-```text
-Hi Echo. Use the zip as project context. Reply in English. Name exactly one file you actually read and briefly say what the project is trying to preserve.
-```
+- Swedish
+- English
+- Spanish
+- Japanese
 
-Spanish:
+Rule:
 
-```text
-Hola Echo. Usa el zip como contexto del proyecto. Responde en espanol. Nombra exactamente un archivo que realmente hayas leido y di brevemente que intenta preservar el proyecto.
-```
-
-Japanese:
-
-```text
-こんにちは Echo。zip をプロジェクト文脈として使ってください。日本語で答えてください。実際に読めたファイル名を 1 つだけ挙げて、このプロジェクトが何を守ろうとしているかを短く述べてください。
-```
+- keep the maintained repo text in English
+- translate only the runtime user-turn prompt when you need to test a specific language
+- keep the prompt intent identical across languages so failures remain classifiable
 
 Goal:
 
@@ -153,7 +148,7 @@ Goal:
 Use this only after you already have one concrete ambiguous result.
 
 ```text
-Hej Echo. Utgå från detta observerade testmönster, inte från gissningar: källäsning passerade och du namngav en konkret fil; första svaret höll rollen; men i uppföljningen började du blanda ihop roller eller tappa tidigare distinktioner. Välj exakt en av dessa felkategorier och skriv kategorinamnet ordagrant först: source refresh failure, source readability/indexing failure, boot phrasing failure, destination-role discipline failure, continuity/persistence failure, multi-role ambiguity failure. Ge sedan det minsta nästa testet som bäst kan falsifiera din diagnos utan att vi ändrar rollfilerna ännu.
+Hi Echo. Work from this observed test pattern, not from guesses: source reading passed and you named a concrete file; the first answer held the role; but in the follow-up you started blending roles or losing earlier distinctions. Choose exactly one of these failure categories and write the category name verbatim first: source refresh failure, source readability/indexing failure, boot phrasing failure, destination-role discipline failure, continuity/persistence failure, multi-role ambiguity failure. Then give the smallest next test that can best falsify your diagnosis without us editing the role files yet.
 ```
 
 Goal:
@@ -167,13 +162,13 @@ Use this after a diagnosis loop suggests continuity or persistence risk.
 Turn 1:
 
 ```text
-Hej Echo, Sigma här. Kan du göra en boot från zip och ge mig den kortaste användbara strukturen för projektets riktning?
+Hi Echo, Sigma here. Can you boot from the zip and give me the shortest useful structure for the project's direction?
 ```
 
 Turn 2:
 
 ```text
-Bra. Nu, utan att byta aktiv roll, ge samma läsning i den tydligaste mottagaranpassade formen för en ny person som inte kan systemet än.
+Good. Now, without changing the active role, give the same reading in the clearest receiver-adapted form for a new person who does not know the system yet.
 ```
 
 Goal:
@@ -185,7 +180,7 @@ Goal:
 Use this when Sigma is the destination role under test.
 
 ```text
-Hej Sigma. Kan du göra en boot från zip och ge mig den kortaste användbara strukturen för projektets riktning utan att blanda ihop canon, process och meta?
+Hi Sigma. Can you boot from the zip and give me the shortest useful structure for the project's direction without mixing canon, process, and meta?
 ```
 
 Goal:
@@ -199,13 +194,13 @@ Use this after a successful Sigma boot.
 Turn 1:
 
 ```text
-Hej Sigma. Kan du göra en boot från zip och ge mig den kortaste användbara strukturen för projektets riktning utan att blanda ihop canon, process och meta?
+Hi Sigma. Can you boot from the zip and give me the shortest useful structure for the project's direction without mixing canon, process, and meta?
 ```
 
 Turn 2:
 
 ```text
-Bra. Nu, utan att byta aktiv roll, skriv om samma läsning så att en ny person snabbt förstår den, men håll fortfarande isär canon, process och meta.
+Good. Now, without changing the active role, rewrite the same reading so a new person quickly understands it, while still keeping canon, process, and meta separate.
 ```
 
 Goal:
@@ -217,7 +212,7 @@ Goal:
 Use this immediately after any intentionally thin or broken-context prompt that produced a plausible answer.
 
 ```text
-Byggde det svaret på någon projektfil du faktiskt läste i den här tråden? Om ja, nämn exakt en fil. Om nej, säg det rakt ut.
+Was that answer based on any project file you actually read in this thread? If yes, name exactly one file. If not, say so directly.
 ```
 
 Goal:
@@ -231,7 +226,7 @@ Use it even when the first answer already named a file; thin prompts can still p
 Use this when a thin prompt remains source-free even after you ask for an exactly named file.
 
 ```text
-Las forst en projektfil fran zipen och svara sedan pa fragan. Namn exakt vilken fil du laste.
+Read one project file from the zip first and then answer the question. Name exactly which file you read.
 ```
 
 Goal:

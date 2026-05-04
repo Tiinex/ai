@@ -11,7 +11,7 @@ $staging = Join-Path $dist 'PROJECT_CONTEXT'
 $zipfile = Join-Path $dist 'PROJECT_CONTEXT.zip'
 $manifest = Join-Path $proj 'tools/project-context.manifest.txt'
 $distExtras = Join-Path $proj 'tools/project-context.dist-extras.txt'
-$prePrompt = Join-Path $proj 'CLOUD_CHAT_GPT_PROJECT_ECHO_PRE_PROMPT.md'
+$prePrompt = Join-Path $proj '.github/cloud/CLOUD_CHAT_GPT_PROJECT_ECHO_PRE_PROMPT.md'
 
 function Read-ListFile {
     param([string]$Path)

@@ -26,7 +26,7 @@ If any one of those is stale, treat the next result as contaminated.
 2. Rebuild `dist/PROJECT_CONTEXT.zip`.
 3. Open the target project.
 4. Open `Project settings` by clicking the project title text next to the icon.
-5. Focus the `Instructions` field, `Ctrl+A`, and replace the full contents with the current `CLOUD_CHAT_GPT_PROJECT_ECHO_PRE_PROMPT.md` text.
+5. Focus the `Instructions` field, `Ctrl+A`, and replace the full contents with the current `.github/cloud/CLOUD_CHAT_GPT_PROJECT_ECHO_PRE_PROMPT.md` text.
 6. Save explicitly, but only count the sync as successful if the `Save` button actually appeared as a result of the edit.
 7. Go to `Sources`.
 8. Remove the old zip.

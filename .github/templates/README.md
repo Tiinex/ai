@@ -13,17 +13,17 @@ They do not all carry the same risk level.
 
 - `handoff-intro-message-v1.md` is English and intended to be reused directly.
 - `operational-addendum-template-v1.md` is English and intended to be reused directly.
-- `anchor-inference-transfer-template-v1.md` is mixed-language and inference-bearing.
+- `anchor-inference-transfer-template-v1.md` is English and inference-bearing.
 
 ## Handling The Inference Transfer Template
 
-Do not blindly translate `anchor-inference-transfer-template-v1.md` just to make the folder look uniform.
+Do not edit `anchor-inference-transfer-template-v1.md` casually just to make the folder look cleaner.
 
-That file carries transfer invariants and important brakes on overreach. A forced cleanup pass could make it easier to read while also making it behave differently for the next receiver.
+That file carries transfer invariants and important brakes on overreach. A cleanup pass can make it easier to read while also making it behave differently for the next receiver.
 
-If wider English access is needed, prefer one of these paths first:
+Future changes should still prefer one of these paths first:
 
-1. Add an English wrapper or usage note around the maintained source.
+1. Add a wrapper or usage note around the maintained source.
 2. Translate a bounded section with old-to-new mapping preserved.
 3. Validate the changed reading before treating the new wording as maintained source text.
 

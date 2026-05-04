@@ -56,7 +56,7 @@ When repo changes affect cloud behavior, treat the live project as having two se
 1. Confirm that the browser is authenticated and that the intended project exists.
 2. Rebuild `dist/PROJECT_CONTEXT.zip` from the current repo.
 3. Refresh the uploaded zip in project `Sources`.
-4. Open `Project settings` and sync the live `Instructions` text with `CLOUD_CHAT_GPT_PROJECT_ECHO_PRE_PROMPT.md`.
+4. Open `Project settings` and sync the live `Instructions` text with `.github/cloud/CLOUD_CHAT_GPT_PROJECT_ECHO_PRE_PROMPT.md`.
 5. Save the settings explicitly.
 6. Start a dedicated new chat for the next distinct test slice instead of reusing an earlier thread.
 7. After the result has been fully read and logged, delete only that dedicated test chat when cleanup is needed.
@@ -109,7 +109,7 @@ Heuristics from observed UI behavior:
 - Deletion usually requires a confirmation dialog.
 - On this UI, the wrong file input can attach a file to the composer instead of project `Sources`; verify the zip lands in the `Sources` list, not in the message composer.
 - The project's `Instructions` in `Project settings` are a separate live control surface from the uploaded zip and can silently go stale.
-- If cloud behavior does not match the current repo pre-prompt, inspect `Show project details` -> `Project settings` and verify the live `Instructions` text is actually synchronized with `CLOUD_CHAT_GPT_PROJECT_ECHO_PRE_PROMPT.md`.
+- If cloud behavior does not match the current repo pre-prompt, inspect `Show project details` -> `Project settings` and verify the live `Instructions` text is actually synchronized with `.github/cloud/CLOUD_CHAT_GPT_PROJECT_ECHO_PRE_PROMPT.md`.
 - On the current UI, the fastest route into `Project settings` is to click the project title text next to the icon in the project header. Do not click the icon itself.
 - Treat `Show project details` -> `Project settings` as the fallback path when the title shortcut is unavailable or unstable.
 - When replacing live `Instructions`, replace the full field contents rather than appending to the existing text.
@@ -168,11 +168,11 @@ Example:
 
 - Echo as destination:
   - neutral boot
-  - `Hej Echo`
-  - `Hej Echo, Sigma här ...`
-  - `Hej Echo, Leo här ...`
-  - `Hej Echo, Orbit här ...`
-  - `Hej Echo, Anchor här ...`
+  - `Hi Echo`
+  - `Hi Echo, Sigma here ...`
+  - `Hi Echo, Leo here ...`
+  - `Hi Echo, Orbit here ...`
+  - `Hi Echo, Anchor here ...`
 
 Do the same later for Anchor, Sigma, Leo, or Orbit when they become the destination role under test.
 
@@ -202,7 +202,7 @@ When you need a compact robustness matrix, use: destination role x execution sur
 
 If a fresh English or other non-Swedish first turn still answers in Swedish even while concrete file reading passes, do not treat that as a role-only failure by default. First suspect the live project bootstrap or `Instructions` language weighting, especially when the bootstrap text itself is Swedish or mixed-language.
 
-The current best repair path for that pattern is to strengthen the live bootstrap language override inside `CLOUD_CHAT_GPT_PROJECT_ECHO_PRE_PROMPT.md` and resync the full `Instructions` field. Put the override high enough in the bootstrap that it can influence the first substantive answer, and make it explicit that the reply language should follow the current user turn rather than the bootstrap language, project-default language, or an earlier dominant thread language.
+The current best repair path for that pattern is to strengthen the live bootstrap language override inside `.github/cloud/CLOUD_CHAT_GPT_PROJECT_ECHO_PRE_PROMPT.md` and resync the full `Instructions` field. Put the override high enough in the bootstrap that it can influence the first substantive answer, and make it explicit that the reply language should follow the current user turn rather than the bootstrap language, project-default language, or an earlier dominant thread language.
 
 Do not treat one clean multilingual pass as enough to prove language stability over time when the prompts themselves explicitly specify the response language. After that first pass, run one bounded same-thread drift slice that removes explicit `reply in X` steering and alternates user languages across turns. If the model keeps defaulting to an earlier dominant language, answers a fresh English turn in Swedish, or continues one language across later foreign-language turns even while concrete file reading still passes, classify that as language-following instability under longer or thinner multilingual pressure rather than as a source-readability failure.
 

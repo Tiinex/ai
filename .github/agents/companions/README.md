@@ -1,22 +1,22 @@
 # Companions
 
-Det här är indexsidan för companion‑artefakterna. Roten hålls medvetet liten: bara översikt, konventioner och körmanual.
+This is the index page for the companion artifacts. The root is kept intentionally small: overview, conventions, and run manual only.
 
-Rootdokument
+Root documents
 
-- `README.md` — denna indexsida.
-- `COMPANION_CONVENTIONS.md` — canonical struktur, naming och provenance-regler.
-- `COMPANION_RUNS_MANUAL.md` — praktisk manual för manuella proof-runs.
+- `README.md` — this index page.
+- `COMPANION_CONVENTIONS.md` — canonical structure, naming, and provenance rules.
+- `COMPANION_RUNS_MANUAL.md` — practical manual for manual proof runs.
 
-Rollstruktur
+Role structure
 
-- Varje roll har en egen mapp under `.github/agents/companions/<role>/`.
-- Varje rollmapp innehåller exakt tre filer:
-  - `design.md` — designbeslut, invariants, failure modes, DoD.
-  - `test.md` — proof families, regressionsfall, acceptanskriterier.
-  - `testdata.md` — fixtures, promptmallar, små exempel.
+- Each role has its own folder under `.github/agents/companions/<role>/`.
+- Each role folder contains exactly three files:
+  - `design.md` — design decisions, invariants, failure modes, DoD.
+  - `test.md` — proof families, regression cases, acceptance criteria.
+  - `testdata.md` — fixtures, prompt templates, small examples.
 
-Nuvarande roller
+Current roles
 
 - `anchor/`
 - `echo/`
@@ -24,8 +24,8 @@ Nuvarande roller
 - `leo/`
 - `orbit/`
 
-Arbetsgång
+Workflow
 
-1. Läs `COMPANION_CONVENTIONS.md`.
-2. Gå till relevant rollmapp och läs främst `test.md`, sedan `design.md` och `testdata.md` vid behov.
-3. Följ `COMPANION_RUNS_MANUAL.md` om du behöver bevara en manuell proof-run; spara råoutput i en extern artefaktplats och inkludera en `Companion Decision Record` samt länkar (URL + SHA) i din PR‑beskrivning.
+1. Read `COMPANION_CONVENTIONS.md`.
+2. Go to the relevant role folder and read `test.md` first, then `design.md` and `testdata.md` as needed.
+3. Follow `COMPANION_RUNS_MANUAL.md` if you need to preserve a manual proof run; store raw output in an external artifact location and include a `Companion Decision Record` plus links (URL + SHA) in your PR description.
