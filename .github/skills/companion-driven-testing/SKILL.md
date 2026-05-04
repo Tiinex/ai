@@ -2,7 +2,6 @@
 name: Companion-driven testing
 description: Human-first, artifact-driven testing using companion markdown files (design, test, testdata).
 argument-hint: Provide the target artifact name or run intent.
-model: GPT-5 mini (copilot)
 ---
 
 # Companion-driven testing
@@ -13,6 +12,7 @@ Purpose
 
 Principles
 - Artifact-first: the companion markdown files (`agent-architect.*.md`, `companions/*`) are the single source of truth for test goals and data.
+- Model choice follows the currently approved feedback-loop lane; this skill should not silently pin a lower-capability model.
 - Non-operational by default: this skill describes and generates non-executing test artifacts and human checklists; it does not perform automated agent runs unless explicitly enabled by a user with credentials and approval.
 - Evidence-bound: every proof must preserve read-after-write evidence and a `Companion Decision Record` adjacent to run provenance.
 
