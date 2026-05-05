@@ -1,4 +1,6 @@
-# Inference Lab — Human + AI
+# Tiinex AI — Inference Lab
+
+Canonical GitHub repo: https://github.com/Tiinex/ai
 
 This repository is a lightweight scaffold for preserving judgment, context, and handoff quality across chats, tools, and collaborators.
 
@@ -54,6 +56,7 @@ The repo is the primary local workspace. The cloud package is a derived export, 
 - `.github/agents/` is the primary source of truth for the role definitions.
 - Agent files should stay close to real role signal and should not be duplicated in root only for packaging convenience.
 - The role texts should remain platform-agnostic; storing them in `.github/agents/` is a local tooling detail, not part of their identity.
+- When present, `human-role: true` is descriptive frontmatter only: it marks a role a human can also carry and signals human provenance behind the role shape, but it does not define runtime behavior or tool policy by itself.
 - `Anchor` is kept as a single portable source so the same file can work locally, in transfer, and in cloud without creating duplicate truth.
 - Human review remains the coordination authority. Roles may diagnose, draft, and recommend, but a human owner decides canon changes, manifest broadening, live `Instructions` changes, and release sign-off.
 - In practice, role feedback should be weighed by relevance to the current question, and the human can re-steer at any point with a short steering message that resets priority, scope, or caution level.
@@ -79,7 +82,7 @@ The cloud package is intentionally curated to restore the right working context,
 
 - `.github/cloud/BOOTSTRAP_MIN.md` carries startup weighting and prune rules.
 - `.github/shared/TEAM_DYNAMICS.md` maps the roles and how they interact.
-- Role notes are exported from `.github/agents/` into short cloud-facing names such as `ECHO.md`, `SIGMA.md`, `LEO.md`, and `ORBIT.md`.
+- Role notes are exported from `.github/agents/` into short cloud-facing names such as `ECHO.md`, `KODAX.md`, `SIGMA.md`, `LEO.md`, and `ORBIT.md`.
 - `.github/shared/PROJECT_CORE.md` carries the stable project core.
 - `.github/shared/DECISION_WEIGHTS.md` carries weighting rules under uncertainty.
 - `.github/shared/PIPELINE.md` carries phase logic and work shifts.

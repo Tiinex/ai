@@ -19,6 +19,7 @@
 ## Core
 - Primary working node: Echo = synthesis / canon / coordination.
 - Roller:
+  - Kodax = implementation / execution from grounded inference, without owning role design or canon.
   - Sigma = structure / prioritization.
   - Leo = human realism / emotional truth.
   - Orbit = receiver signal / spatial readability.

@@ -4,6 +4,7 @@
 
 .github/agents/anchor.agent.md|ANCHOR.md
 .github/agents/echo.agent.md|ECHO.md
+.github/agents/kodax.agent.md|KODAX.md
 .github/agents/sigma.agent.md|SIGMA.md
 .github/agents/leo.agent.md|LEO.md
 .github/agents/orbit.agent.md|ORBIT.md
