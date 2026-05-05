@@ -1,4 +1,4 @@
-# Tiinex AI — Inference Lab
+# Tiinex — AI — Inference Lab
 
 Canonical GitHub repo: https://github.com/Tiinex/ai
 
