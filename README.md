@@ -125,3 +125,7 @@ Important for real ChatGPT Project use:
 - The role should carry inferential discipline; the skill should carry the operational testing sequence.
 - `.github/skills/chatgpt-cloud-project-testing/assets/live-sync-checklist.md` is the concrete sync routine for zip, live `Instructions`, and chat state.
 - `.github/skills/vscode-decision-questions/` is the VS Code-specific workflow for using `vscode_askQuestions` when a few bounded decisions are faster and safer than freeform chat.
+
+## Support
+
+If you find this work valuable and want to support its continued development: https://ko-fi.com/Tiinusen
