@@ -1,5 +1,7 @@
 # Tiinex — AI — Inference Lab
 
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+
 Canonical GitHub repo: https://github.com/Tiinex/ai
 
 This repository is a lightweight scaffold for preserving judgment, context, and handoff quality across chats, tools, and collaborators.
