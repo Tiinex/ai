@@ -126,6 +126,22 @@ Important for real ChatGPT Project use:
 - `.github/skills/chatgpt-cloud-project-testing/assets/live-sync-checklist.md` is the concrete sync routine for zip, live `Instructions`, and chat state.
 - `.github/skills/vscode-decision-questions/` is the VS Code-specific workflow for using `vscode_askQuestions` when a few bounded decisions are faster and safer than freeform chat.
 
+## Anti-Tethics
+
+Tiinex does not attempt to solve inference stability through inspirational slogans, floating ethics statements, or abstract alignment theater.
+
+We focus on:
+
+* verification
+* continuity hygiene
+* recovery
+* bounded inspection
+* explicit canon formation
+* and reducing inference drift in real systems
+
+Less “Tethics.”  
+More operational reality.
+
 ## Support
 
 If you find this work valuable and want to support its continued development: https://ko-fi.com/Tiinusen
