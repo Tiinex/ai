@@ -35,6 +35,8 @@ Use this as the maintained transition artifact for role-development process whil
 - A candidate starts from the maintained role, not from an earlier failed candidate.
 - A candidate is a disposable test surface, not a second evolving truth.
 - If a role file is acting as a candidate surface, mark that in frontmatter with `candidate: true`.
+- If the host surface exposes role names directly, keep the candidate name visibly distinct from the maintained role name in metadata so it is not mistaken for the maintained source during testing or transport. For the current Anchor candidate, preserve `Anchor (Candidate)` rather than `Anchor`.
+- Use parenthetical name disambiguation consistently for metadata-level role variants that would otherwise look like the maintained role in UI or transport. Preserve explicit suffixes such as `Anchor (Candidate)` for candidate state and `Anchor (Any)` when the surface intentionally has no model constraint; if a surface intentionally departs from the repo-default model contract, make that departure visible in the parenthetical name as well.
 - Candidate status should live in frontmatter and process evidence, not in the candidate body itself.
 - Do not add candidate-only meta text, warnings, or identity markers to the runtime body; the body should differ from maintained source only where the tested behavior actually changes.
 
@@ -59,6 +61,8 @@ Use this as the maintained transition artifact for role-development process whil
 - Tooling should first prove transport quality, targeting quality, evidence quality, and cleanup quality.
 - Tooling success is not by itself candidate success.
 - Transport-clean means candidate diagnosis may begin; it is not a candidate pass and not a promotion signal.
+- If tooling misbehaves, pause the role-development slice instead of improvising around it.
+- Use that pause to repair the relevant tooling or skill assumptions before gathering more candidate evidence.
 
 8. Promote only after stable repetition.
 - If a role-development rule proves useful across iterations, anchor it into the smallest correct maintained home.
