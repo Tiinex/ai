@@ -34,6 +34,9 @@ Use this as the maintained transition artifact for role-development process whil
 3. Create a fresh candidate from maintained source.
 - A candidate starts from the maintained role, not from an earlier failed candidate.
 - A candidate is a disposable test surface, not a second evolving truth.
+- If a role file is acting as a candidate surface, mark that in frontmatter with `candidate: true`.
+- Candidate status should live in frontmatter and process evidence, not in the candidate body itself.
+- Do not add candidate-only meta text, warnings, or identity markers to the runtime body; the body should differ from maintained source only where the tested behavior actually changes.
 
 4. Test the candidate against `test.md`.
 - The active role test bench is the role's companion `test.md`.
@@ -149,6 +152,7 @@ Use this as the maintained transition artifact for role-development process whil
 - Every candidate attempt is a fresh attempt.
 - A candidate should not be treated as OK until the current `test.md` bench has been checked broadly enough to avoid blind spots, with full test coverage as the default expectation.
 - Candidate role files must not survive into build time.
+- If a candidate role file exists locally before cleanup, it should carry `candidate: true` in frontmatter so the file is explicitly marked as a candidate surface.
 - Here, `build time` means any packaging, CI, artifact-generation, or release step that produces files intended to ship or be consumed as a real runtime or transfer surface.
 - Non-candidate role variants may exist only when they preserve the maintained role body after agent frontmatter is stripped and line endings are normalized; any allowed variant difference should live in metadata or other explicitly sanctioned non-body configuration.
 - Do not create more role-development files than the repo already needs.

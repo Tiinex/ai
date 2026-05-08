@@ -58,6 +58,27 @@ function Get-ExportContent {
     return $content
 }
 
+function Test-AgentFrontmatterFlag {
+    param(
+        [string]$Path,
+        [string]$FlagName,
+        [string]$ExpectedValue
+    )
+
+    $content = Get-Content -Path $Path -Raw
+    if (-not $content.StartsWith('---')) {
+        return $false
+    }
+
+    $frontmatterMatch = [regex]::Match($content, '^---\r?\n(.*?)\r?\n---\r?\n?', 'Singleline')
+    if (-not $frontmatterMatch.Success) {
+        return $false
+    }
+
+    $pattern = '(?m)^' + [regex]::Escape($FlagName) + '\s*:\s*' + [regex]::Escape($ExpectedValue) + '\s*$'
+    return [regex]::IsMatch($frontmatterMatch.Groups[1].Value, $pattern)
+}
+
 function Get-NormalizedAgentBody {
     param([string]$Path)
 
@@ -88,6 +109,9 @@ function Assert-AgentVariantBodiesMatch {
         $roleName = $Matches['role']
         $variantName = $Matches['variant']
         if ($variantName -eq 'candidate') {
+            if (-not (Test-AgentFrontmatterFlag -Path $file.FullName -FlagName 'candidate' -ExpectedValue 'true')) {
+                $candidateErrors += "$($file.Name): candidate role files must carry candidate: true in frontmatter"
+            }
             $candidateErrors += "$($file.Name): candidate roles must not exist at build time"
             continue
         }
