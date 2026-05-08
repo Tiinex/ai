@@ -189,18 +189,37 @@ Memory settings:
 2. Disable `Memory`.
 3. Disable `Reference saved memories`.
 4. Disable `Reference chat history`.
+5. Check `Manage memories` and delete any saved memories that should not persist.
 
 Data-use setting:
 
 1. Open `Settings -> Data Controls`.
 2. Disable `Improve the model for everyone`.
-3. Treat this as part of the default low-drift setup, not as an optional extra.
+3. OpenAI states that when this is off, new ChatGPT conversations remain in chat history but are not used to train ChatGPT.
+4. Treat this as part of the default low-drift setup, not as an optional extra.
+
+Feedback hygiene:
+
+1. Avoid using feedback interactions such as thumbs up, thumbs down, side-by-side option choices, rating prompts, or inline feedback requests for sensitive work.
+2. OpenAI states that even if model training is turned off, if you choose to provide feedback, the entire conversation associated with that feedback may be used to train models.
+3. For sensitive work, prefer closing or ignoring feedback prompts instead of selecting an option.
+
+Temporary Chat:
+
+1. Use `Temporary Chat` when you want a lower-persistence interaction.
+2. OpenAI states that Temporary Chats do not appear in history, do not use or create memories, and are not used to train models.
+3. This does not replace careful handling of sensitive information, but it is a safer default for exploratory or higher-risk conversations.
+
+Re-entry model:
+
+1. For important work, do not rely on platform memory as the source of truth.
+2. Prefer repository files, explicit context exports, README or NOTICE files, pinned operational instructions, and reviewed handoff artifacts.
 
 Why this is recommended here:
 
 - This repo is built around explicit grounding and observable state.
-- Service-side training or reuse is outside the repo's own artifact and continuity model.
-- If you do not know how retained inference may later be used, the safer default for this workflow is to turn that path off when the surface exposes the control.
+- Service-side adaptation or model-improvement workflows are outside the repo's own artifact and continuity model.
+- If you prefer continuity to remain explicit, reviewable, and artifact-grounded, the safer default for this workflow is to disable optional retention and feedback features when the platform exposes those controls.
 
 Working style:
 
