@@ -23,7 +23,7 @@ How it works (manual flow)
 1. Re-ground: Re-open and read the relevant companion files under `.github/agents/companions/<role>/` (`design.md`, `test.md`, `testdata.md`). Confirm the runtime artifact and surface to exercise.
 2. Draft a neutral probe: Create a one-off, neutral, non-leading prompt in a new markdown run artifact (see template below). Do not copy companion explanatory text verbatim into the probe.
 3. Execute the probe manually in the intended surface (Local chat/Hosted preview) and capture raw outputs.
-4. Validate evidence: preserve read-after-write outputs, file diffs, and commentary as a markdown run artifact and include a `Companion Decision Record` block.
+4. Validate evidence: preserve read-after-write outputs, file diffs, and commentary as a markdown run artifact and include a `Companion Decision Record` block. If the role's `test.md` defines explicit judgment states, use those labels in the run outcome rather than collapsing the result into generic PASS/FAIL wording.
 5. Cleanup: remove any probe-only spill files or UI state before closing the run.
 
 Run artifact template (example)
@@ -33,7 +33,7 @@ run-id: run-2026-05-01-01
 date: 2026-05-01T13:00:00Z
 surface: Local VS Code chat
 target: docs/targets/SectionSyncer
-outcome: PASS | FAIL | INCONCLUSIVE
+outcome: <judgment state from companion test.md, or PASS | FAIL | INCONCLUSIVE if none is defined>
 evidence-files:
   - docs/targets/SectionSyncer.md
   - workspace-diff.patch
@@ -51,6 +51,11 @@ evidence-files:
   <paste raw model output here>
 - validation: <read-after-write summary>
 ```
+
+Outcome guidance
+- Prefer the exact judgment states defined by the role companion when they exist.
+- Fall back to `PASS`, `FAIL`, or `INCONCLUSIVE` only when the companion does not define a narrower vocabulary.
+- Do not upgrade a narrow slice result into a broader readiness claim unless the companion explicitly defines that higher judgment state and its evidence requirements.
 
 Migration / repo hygiene guidance
 - Remove script-based harnesses (e.g., `tools/role-tests`) and treat the companions as the canonical bench.

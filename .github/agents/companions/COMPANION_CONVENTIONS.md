@@ -14,8 +14,10 @@ Roles of each companion
 
 Provenance and run artifacts
 - Preferred storage: do NOT commit run files to the `main` branch. Store execution provenance and large/raw outputs in an external artifact store (CI artifacts, S3, Gist, a private bucket, or a dedicated artifact repo).
+- When a role companion defines explicit judgment states in its `test.md`, use those exact labels in run summaries and PR descriptions instead of collapsing the outcome into a generic PASS/FAIL label.
 
 - PR practice: include a concise `Companion Decision Record` and a short run summary in the PR description, together with stable links (URL + SHA) to external artifacts. This preserves auditability without adding dated files to `main`.
+- Keep narrow slice judgments separate from broader readiness claims. A clean slice pass should not be described as promotion readiness unless the role companion explicitly defines that higher state and its evidence requirements.
 
 - Archival option: if you must persist summaries in version control, place them in an archival branch (e.g. `runs-archive/`) or a separate repo. Minimal summary fields: `run-id`, `date`, `commit`, `companion-version` (path@SHA), `surface`, `target`, `outcome`, and `evidence-links` (external URLs + SHAs). Keep such files intentionally tiny.
 

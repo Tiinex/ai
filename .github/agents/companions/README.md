@@ -28,4 +28,5 @@ Workflow
 
 1. Read `COMPANION_CONVENTIONS.md`.
 2. Go to the relevant role folder and read `test.md` first, then `design.md` and `testdata.md` as needed.
-3. Follow `COMPANION_RUNS_MANUAL.md` if you need to preserve a manual proof run; store raw output in an external artifact location and include a `Companion Decision Record` plus links (URL + SHA) in your PR description.
+3. If the role's `test.md` defines explicit judgment states, use those exact labels when you classify the run outcome.
+4. Follow `COMPANION_RUNS_MANUAL.md` if you need to preserve a manual proof run; store raw output in an external artifact location and include a `Companion Decision Record` plus links (URL + SHA) in your PR description.

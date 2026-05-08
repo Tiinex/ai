@@ -58,8 +58,64 @@ function Get-ExportContent {
     return $content
 }
 
+function Get-NormalizedAgentBody {
+    param([string]$Path)
+
+    $projRelative = Resolve-Path -LiteralPath $Path | ForEach-Object {
+        $_.Path.Substring($proj.Length).TrimStart('\')
+    }
+
+    $content = Get-ExportContent -SourcePath $Path -RelativeSource $projRelative
+    return ($content -replace "`r`n", "`n").TrimEnd()
+}
+
+function Assert-AgentVariantBodiesMatch {
+    $agentsDir = Join-Path $proj '.github/agents'
+    if (-not (Test-Path $agentsDir)) {
+        return
+    }
+
+    $candidateErrors = @()
+    $variantMismatches = @()
+    $variantErrors = @()
+    $agentFiles = Get-ChildItem -Path $agentsDir -Filter '*.agent.md' -File
+
+    foreach ($file in $agentFiles) {
+        if ($file.BaseName -notmatch '^(?<role>.+)-(?<variant>[^-]+)\.agent$') {
+            continue
+        }
+
+        $roleName = $Matches['role']
+        $variantName = $Matches['variant']
+        if ($variantName -eq 'candidate') {
+            $candidateErrors += "$($file.Name): candidate roles must not exist at build time"
+            continue
+        }
+
+        $basePath = Join-Path $agentsDir ($roleName + '.agent.md')
+        if (-not (Test-Path $basePath)) {
+            $variantErrors += "$($file.Name): missing maintained base role $roleName.agent.md"
+            continue
+        }
+
+        $variantBody = Get-NormalizedAgentBody -Path $file.FullName
+        $baseBody = Get-NormalizedAgentBody -Path $basePath
+        if ($variantBody -ne $baseBody) {
+            $variantMismatches += "$($file.Name) does not match $roleName.agent.md after frontmatter is stripped"
+        }
+    }
+
+    if ($candidateErrors.Count -gt 0 -or $variantErrors.Count -gt 0 -or $variantMismatches.Count -gt 0) {
+        $details = @($candidateErrors + $variantErrors + $variantMismatches) -join [Environment]::NewLine
+        Write-Error "Agent variant body check failed:$([Environment]::NewLine)$details"
+        exit 1
+    }
+}
+
 $packageFiles = Read-ListFile $manifest | ForEach-Object { Parse-ManifestEntry $_ }
 $extraFiles = Read-ListFile $distExtras
+
+Assert-AgentVariantBodiesMatch
 
 if (-not (Test-Path $dist)) {
     New-Item -ItemType Directory -Path $dist | Out-Null

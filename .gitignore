@@ -3,4 +3,6 @@ dist/
 .github/instructions/*.temporary.instructions.md
 .external-repo
 .github/agents/*-candidate.*
-.github/agents/*-senior.*
+.github/agents/*-any.*
+*.tmp*
+.tmp*

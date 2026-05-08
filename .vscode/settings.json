@@ -1,0 +1,8 @@
+{
+  "github.copilot.chat.tools.memory.enabled": false,
+  "github.copilot.chat.copilotMemory.enabled": false,
+  "github.copilot.chat.summarizeAgentConversationHistory.enabled": false,
+  "github.copilot.chat.edits.temporalContext.enabled": false,
+  "search.searchView.semanticSearchBehavior": "manual",
+  "search.searchView.keywordSuggestions": false
+}

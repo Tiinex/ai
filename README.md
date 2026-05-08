@@ -76,6 +76,7 @@ The repo is the primary local workspace. The cloud package is a derived export, 
 - `.github/templates/anchor-inference-transfer-template-v1.md` is the heavier inference-transfer scaffold.
 - `.github/templates/operational-addendum-template-v1.md` is the small addendum for moving from scaffold to concrete work.
 - `.github/transitions/RECOVERY_INSTRUCTIONS.md` is the active non-canonical continuity payload when a small state-carry surface is still justified.
+- `.github/transitions/ROLE_DEVELOPMENT_LOOP.md` is the primary transition artifact for role-development process while that discipline is still being anchored into better long-term homes.
 - `.github/transitions/TRANSFER_AND_PROCESS.md` carries persistence governance, feedback-loop discipline, drift patterns, and transfer thresholds while that process signal is still being distilled.
 
 ## Curated Cloud Context
@@ -125,6 +126,93 @@ Important for real ChatGPT Project use:
 - The role should carry inferential discipline; the skill should carry the operational testing sequence.
 - `.github/skills/chatgpt-cloud-project-testing/assets/live-sync-checklist.md` is the concrete sync routine for zip, live `Instructions`, and chat state.
 - `.github/skills/vscode-decision-questions/` is the VS Code-specific workflow for using `vscode_askQuestions` when a few bounded decisions are faster and safer than freeform chat.
+
+## Low-Drift Setup
+
+This repo works best when continuity is explicit, scoped, and recoverable rather than hidden in personalization or thread carry-over.
+
+Preferred defaults:
+
+- explicit artifacts over hidden personalization
+- scoped continuity over endless thread continuation
+- observable state over behavioral accumulation
+- re-grounding from repo artifacts over relying on old chat momentum
+
+### GitHub Copilot
+
+GitHub-side setup:
+
+1. Open GitHub Copilot settings at `https://github.com/settings/copilot`.
+2. Look for options related to:
+	- Memory
+	- Repository memory
+	- Cross-session memory
+	- Personalized responses
+	- Context retention
+	- or similar adaptive behavior
+3. Disable anything that stores preferences, remembers repositories, or offers improved future responses through retained personalization.
+4. If your account or plan does not expose those controls, use the behavioral fallback: treat GitHub-side continuity as non-authoritative and re-ground from repo artifacts instead of relying on remembered state.
+
+VS Code-side setup:
+
+1. Open the command palette with `Ctrl+Shift+P`.
+2. Run `Preferences: Open Settings (JSON)`.
+3. If your build exposes memory-style toggles, disable them there.
+
+Common examples that may exist on some builds:
+
+```json
+{
+	"github.copilot.chat.tools.memory.enabled": false,
+	"github.copilot.chat.copilotMemory.enabled": false,
+	"github.copilot.chat.summarizeAgentConversationHistory.enabled": false,
+	"github.copilot.chat.edits.temporalContext.enabled": false
+}
+```
+
+Optional search-behavior reduction in VS Code:
+
+```json
+{
+	"search.searchView.semanticSearchBehavior": "manual",
+	"search.searchView.keywordSuggestions": false
+}
+```
+
+If your build does not expose these exact keys, follow the behavioral rule instead: prefer explicit artifact reads over adaptive memory or implicit carry-over.
+
+### ChatGPT
+
+Memory settings:
+
+1. Open `Profile Icon -> Settings -> Personalization -> Memory`.
+2. Disable `Memory`.
+3. Disable `Reference saved memories`.
+4. Disable `Reference chat history`.
+
+Data-use setting:
+
+1. Open `Settings -> Data Controls`.
+2. Disable `Improve the model for everyone`.
+3. Treat this as part of the default low-drift setup, not as an optional extra.
+
+Why this is recommended here:
+
+- This repo is built around explicit grounding and observable state.
+- Service-side training or reuse is outside the repo's own artifact and continuity model.
+- If you do not know how retained inference may later be used, the safer default for this workflow is to turn that path off when the surface exposes the control.
+
+Working style:
+
+1. Treat thread continuation as a convenience, not as the authoritative source of process truth.
+2. Start fresh chats more often when the task is inferentially sensitive.
+3. For this repo, artifact re-grounding is usually safer than very long-lived conversation state.
+
+Notes:
+
+- Exact setting names and JSON keys can vary by product version, plan, or build.
+- If your surface does not expose a given toggle, follow the behavioral rule instead: keep continuity explicit and re-ground from artifacts before trusting old thread state.
+- This repo is designed around the idea that you should be able to tell where the important state lives.
 
 ## Anti-Tethics
 

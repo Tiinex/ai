@@ -10,6 +10,7 @@ Preparation
 1. Start from a clean working tree: no unintended edits, no open probe files.
 2. Read the relevant companion files under `.github/agents/companions/<role>/` (`design.md`, `test.md`, `testdata.md`).
 3. Decide the intended surface (for example Local VS Code chat, Hosted preview) where you will run the prompt.
+4. Check whether the role's `test.md` defines explicit judgment states; if it does, plan to use those exact labels in the run outcome instead of collapsing the result into generic PASS/FAIL wording.
 
 Steps for a manual proof run (clean main-branch practice)
 
@@ -40,9 +41,14 @@ Exempel (PR‑beskrivning):
 
 ## Run Summary
 - probe-intent: "<short description of what was tested>"
-- outcome: PASS | FAIL | INCONCLUSIVE
+- outcome: <judgment state from companion test.md, or PASS | FAIL | INCONCLUSIVE if none is defined>
 - short-validation: "<one-line read-after-write summary>"
 ```
+
+Outcome classification
+- If the role companion defines judgment states, copy the exact state label into `outcome`.
+- If no role-specific states are defined, use `PASS`, `FAIL`, or `INCONCLUSIVE`.
+- Keep slice judgment separate from broader readiness claims. Do not compress a clean slice pass into promotion readiness unless the companion explicitly defines and supports that higher state.
 
 5) Cleanup
 - Remove or revert temporary probe-only artifacts locally. Confirm in the PR description that cleanup was done.
