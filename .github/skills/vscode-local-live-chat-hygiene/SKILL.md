@@ -25,6 +25,8 @@ Core rules
 - When a probe created a dedicated chat only for testing, close its visible tab after evidence has been read unless the user explicitly wants it left open.
 - For destructive cleanup, preserve the order `close` then `delete`. Prefer `delete_live_agent_chat_artifacts` because it is intended to close matching visible tabs before deleting persisted artifacts for that exact session.
 - Do not perform ad hoc disk deletion against a still-visible editor chat through any other path. If the visible close step cannot be confirmed, stop and report the remaining visible session instead of inverting the order.
+- Do not run Local live chat tools in parallel with each other. Treat `list_live_agent_chats`, `reveal_live_agent_chat`, `close_visible_live_chat_tabs`, `delete_live_agent_chat_artifacts`, `create_live_agent_chat`, `send_message_to_live_agent_chat`, and `send_message_to_focused_live_chat` as serial host-bound operations.
+- Do not mix those live operations into `parallel` batches with other session-bound or host-bound Local chat tooling. Only plain file inspection and other non-host read-only work should be parallelized around them.
 
 Preferred workflow
 1. Inspect support first. Read the live-chat support output or recent observed behavior before assuming this VS Code/Copilot build can honor exact mode or agent selection.
@@ -35,6 +37,7 @@ Preferred workflow
 6. Use ordered destructive cleanup only when needed. If the probe session should also be removed from disk, prefer `delete_live_agent_chat_artifacts` so the visible close step happens before persisted artifact deletion.
 7. Keep same-chat verification in the same thread. When testing inference or follow-up behavior, send the next prompt into the same target chat rather than opening a fresh conversation for that step.
 8. Keep evidence bounded. Prefer compact session windows, snapshots, or bounded transcript exports before resorting to larger verbatim exports.
+9. When more than one live target must be checked, process them serially and wait for each result before issuing the next live-tool call.
 
 Interpretation rules
 - A fallback send can still be useful evidence for target delivery, but it does not upgrade selection guarantees for create-time mode or agent choice.
