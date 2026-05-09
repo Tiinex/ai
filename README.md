@@ -14,7 +14,7 @@ The goal is not to ship a giant all-in-one system. The goal is to keep a small c
 
 - If you want the lightest human handoff, start with `.github/templates/handoff-intro-message-v1.md`.
 - If you need the heavier transfer scaffold, open `.github/templates/anchor-inference-transfer-template-v1.md` next.
-- If you want to inspect the maintained role sources directly, go to `.github/agents/`.
+- If you want to inspect the role sources and explicit variants directly, go to `.github/agents/`.
 - If you want to understand how cloud behavior is tested and kept in sync, read `.github/skills/chatgpt-cloud-project-testing/`.
 
 ## What This Repo Helps With
@@ -40,7 +40,7 @@ The goal is not to ship a giant all-in-one system. The goal is to keep a small c
 ## Repo Shape
 
 - The repo root is intentionally small. It should work as a map for a human reader, not as a hidden dependency for role behavior.
-- `.github/agents/` holds the maintained role definitions.
+- `.github/agents/` holds the active role definitions and explicit model/lifecycle variants.
 - `.github/skills/` holds workflow-specific operational artifacts.
 - `.github/shared/` holds shared canon and governance that should not live only in a role.
 - `.github/cloud/` holds bootstrap and cloud-facing support material.
@@ -55,11 +55,11 @@ The repo is the primary local workspace. The cloud package is a derived export, 
 - VS Code and ChatGPT Cloud are different execution surfaces for the same maintained role signal.
 - Roles must still function without needing root-file guidance.
 - Platform-specific behavior should live in workflow skills, bootstrap text, packaging, and validation rather than in duplicate role identities or hidden root logic.
-- `.github/agents/` is the primary source of truth for the role definitions.
+- `.github/agents/` is the primary local source tree for role definitions and explicit role variants.
 - Agent files should stay close to real role signal and should not be duplicated in root only for packaging convenience.
 - The role texts should remain platform-agnostic; storing them in `.github/agents/` is a local tooling detail, not part of their identity.
 - When present, `human-role: true` is descriptive frontmatter only: it marks a role a human can also carry and signals human provenance behind the role shape, but it does not define runtime behavior or tool policy by itself.
-- `Anchor` is kept as a single portable source so the same file can work locally, in transfer, and in cloud without creating duplicate truth.
+- Anchor's role signal should remain portable across local, transfer, and cloud even when the repo carries explicit model-bound or lifecycle-specific surfaces for testing and transparency.
 - Human review remains the coordination authority. Roles may diagnose, draft, and recommend, but a human owner decides canon changes, manifest broadening, live `Instructions` changes, and release sign-off.
 - In practice, role feedback should be weighed by relevance to the current question, and the human can re-steer at any point with a short steering message that resets priority, scope, or caution level.
 
@@ -85,7 +85,7 @@ The cloud package is intentionally curated to restore the right working context,
 
 - `.github/cloud/BOOTSTRAP_MIN.md` carries startup weighting and prune rules.
 - `.github/shared/TEAM_DYNAMICS.md` maps the roles and how they interact.
-- Role notes are exported from `.github/agents/` into short cloud-facing names such as `ECHO.md`, `KODAX.md`, `SIGMA.md`, `LEO.md`, and `ORBIT.md`.
+- Selected role notes are exported from `.github/agents/` into short cloud-facing names such as `ANCHOR.md`, `ECHO.md`, `KODAX.md`, `SIGMA.md`, `LEO.md`, and `ORBIT.md`.
 - `.github/shared/PROJECT_CORE.md` carries the stable project core.
 - `.github/shared/DECISION_WEIGHTS.md` carries weighting rules under uncertainty.
 - `.github/shared/PIPELINE.md` carries phase logic and work shifts.

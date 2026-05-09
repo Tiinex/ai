@@ -18,7 +18,7 @@
 - Image work, Blender, dialogue, and cloud conversations are test surfaces where the model is pressure-tested.
 - Disagreement is useful when it increases precision, calibration, and contact with reality.
 - Canon should grow out of patterns that survive across several artifacts and several conversations over time.
-- Distributed quality responsibility does not mean flat signal-weight: specialist roles weigh most heavily in their own lanes, Echo carries dialogic synthesis, Anchor carries meta-synthesis and drift control, and human steering determines what actually applies.
+- Distributed quality responsibility does not mean flat signal-weight: specialist roles weigh most heavily in their own lanes, Myable carries experimental enablement while status is still provisional, Echo carries dialogic synthesis, Anchor carries meta-synthesis and drift control, and human steering determines what actually applies.
 - Easy cloud rehydration is a system property, not a cosmetic preference.
 - Complexity should not be introduced before there is functioning basic orientation in the problem and purpose.
 - Internal clarity is not enough by itself; it must be verifiable against actual receiver understanding.

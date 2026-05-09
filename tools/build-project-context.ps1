@@ -90,6 +90,38 @@ function Get-NormalizedAgentBody {
     return ($content -replace "`r`n", "`n").TrimEnd()
 }
 
+function Get-AgentVariantInfo {
+    param([System.IO.FileInfo]$File)
+
+    if (-not $File.Name.EndsWith('.agent.md')) {
+        return $null
+    }
+
+    $stem = $File.Name.Substring(0, $File.Name.Length - '.agent.md'.Length)
+    $tokens = $stem.Split('.')
+    if ($tokens.Count -lt 1) {
+        return $null
+    }
+
+    $roleName = $tokens[0]
+    $remainingTokens = if ($tokens.Count -gt 1) { $tokens[1..($tokens.Count - 1)] } else { @() }
+    $lifecycle = $null
+
+    if ($remainingTokens.Count -gt 0 -and @('candidate', 'experimental') -contains $remainingTokens[-1]) {
+        $lifecycle = $remainingTokens[-1]
+        $remainingTokens = if ($remainingTokens.Count -gt 1) { $remainingTokens[0..($remainingTokens.Count - 2)] } else { @() }
+    }
+
+    return [pscustomobject]@{
+        File = $File
+        RoleName = $roleName
+        Lifecycle = $lifecycle
+        IsCandidate = $lifecycle -eq 'candidate'
+        VariantKey = @($remainingTokens) -join '.'
+        HasExplicitVariant = $tokens.Count -gt 1
+    }
+}
+
 function Assert-AgentVariantBodiesMatch {
     $agentsDir = Join-Path $proj '.github/agents'
     if (-not (Test-Path $agentsDir)) {
@@ -98,40 +130,70 @@ function Assert-AgentVariantBodiesMatch {
 
     $candidateErrors = @()
     $variantMismatches = @()
-    $variantErrors = @()
-    $agentFiles = Get-ChildItem -Path $agentsDir -Filter '*.agent.md' -File
+    $agentInfos = Get-ChildItem -Path $agentsDir -Filter '*.agent.md' -File |
+        ForEach-Object { Get-AgentVariantInfo -File $_ } |
+        Where-Object { $null -ne $_ }
 
-    foreach ($file in $agentFiles) {
-        if ($file.BaseName -notmatch '^(?<role>.+)-(?<variant>[^-]+)\.agent$') {
-            continue
-        }
-
-        $roleName = $Matches['role']
-        $variantName = $Matches['variant']
-        if ($variantName -eq 'candidate') {
-            if (-not (Test-AgentFrontmatterFlag -Path $file.FullName -FlagName 'candidate' -ExpectedValue 'true')) {
-                $candidateErrors += "$($file.Name): candidate role files must carry candidate: true in frontmatter"
-            }
-            $candidateErrors += "$($file.Name): candidate roles must not exist at build time"
-            continue
-        }
-
-        $basePath = Join-Path $agentsDir ($roleName + '.agent.md')
-        if (-not (Test-Path $basePath)) {
-            $variantErrors += "$($file.Name): missing maintained base role $roleName.agent.md"
-            continue
-        }
-
-        $variantBody = Get-NormalizedAgentBody -Path $file.FullName
-        $baseBody = Get-NormalizedAgentBody -Path $basePath
-        if ($variantBody -ne $baseBody) {
-            $variantMismatches += "$($file.Name) does not match $roleName.agent.md after frontmatter is stripped"
+    foreach ($info in $agentInfos | Where-Object { $_.IsCandidate }) {
+        if (-not (Test-AgentFrontmatterFlag -Path $info.File.FullName -FlagName 'candidate' -ExpectedValue 'true')) {
+            $candidateErrors += "$($info.File.Name): candidate role files must carry candidate: true in frontmatter"
         }
     }
 
-    if ($candidateErrors.Count -gt 0 -or $variantErrors.Count -gt 0 -or $variantMismatches.Count -gt 0) {
-        $details = @($candidateErrors + $variantErrors + $variantMismatches) -join [Environment]::NewLine
+    foreach ($group in ($agentInfos | Where-Object { -not $_.IsCandidate } | Group-Object RoleName)) {
+        $roleInfos = @($group.Group | Sort-Object { $_.File.Name })
+        if ($roleInfos.Count -le 1) {
+            continue
+        }
+
+        $baseline = $roleInfos | Where-Object { -not $_.HasExplicitVariant } | Select-Object -First 1
+        if ($null -eq $baseline) {
+            $baseline = $roleInfos[0]
+        }
+
+        $baselineBody = Get-NormalizedAgentBody -Path $baseline.File.FullName
+        foreach ($info in $roleInfos) {
+            if ($info.File.FullName -eq $baseline.File.FullName) {
+                continue
+            }
+
+            $variantBody = Get-NormalizedAgentBody -Path $info.File.FullName
+            if ($variantBody -ne $baselineBody) {
+                $variantMismatches += "$($info.File.Name) does not match $($baseline.File.Name) after frontmatter is stripped"
+            }
+        }
+    }
+
+    if ($candidateErrors.Count -gt 0 -or $variantMismatches.Count -gt 0) {
+        $details = @($candidateErrors + $variantMismatches) -join [Environment]::NewLine
         Write-Error "Agent variant body check failed:$([Environment]::NewLine)$details"
+        exit 1
+    }
+}
+
+function Assert-ManifestExcludesCandidateAgents {
+    param([object[]]$ManifestEntries)
+
+    $candidateExportErrors = @()
+
+    foreach ($entry in $ManifestEntries) {
+        if ($entry.Source -notlike '*.agent.md') {
+            continue
+        }
+
+        $sourcePath = Join-Path $proj $entry.Source
+        if (-not (Test-Path $sourcePath)) {
+            continue
+        }
+
+        if (Test-AgentFrontmatterFlag -Path $sourcePath -FlagName 'candidate' -ExpectedValue 'true') {
+            $candidateExportErrors += "$($entry.Source): candidate role files must not be exported in PROJECT_CONTEXT.zip"
+        }
+    }
+
+    if ($candidateExportErrors.Count -gt 0) {
+        $details = $candidateExportErrors -join [Environment]::NewLine
+        Write-Error "Project context manifest includes candidate role files:$([Environment]::NewLine)$details"
         exit 1
     }
 }
@@ -140,6 +202,7 @@ $packageFiles = Read-ListFile $manifest | ForEach-Object { Parse-ManifestEntry $
 $extraFiles = Read-ListFile $distExtras
 
 Assert-AgentVariantBodiesMatch
+Assert-ManifestExcludesCandidateAgents -ManifestEntries $packageFiles
 
 if (-not (Test-Path $dist)) {
     New-Item -ItemType Directory -Path $dist | Out-Null

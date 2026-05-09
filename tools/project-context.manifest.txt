@@ -2,12 +2,12 @@
 # Use optional source|destination mappings when a file should be exported
 # under a simpler flat name inside PROJECT_CONTEXT.zip.
 
-.github/agents/anchor.agent.md|ANCHOR.md
-.github/agents/echo.agent.md|ECHO.md
-.github/agents/kodax.agent.md|KODAX.md
-.github/agents/sigma.agent.md|SIGMA.md
-.github/agents/leo.agent.md|LEO.md
-.github/agents/orbit.agent.md|ORBIT.md
+.github/agents/anchor.any.experimental.agent.md|ANCHOR.md
+.github/agents/echo.gpt-4-1.experimental.agent.md|ECHO.md
+.github/agents/kodax.gpt-4-1.experimental.agent.md|KODAX.md
+.github/agents/sigma.gpt-5-4-mini.experimental.agent.md|SIGMA.md
+.github/agents/leo.gpt-5-4-mini.experimental.agent.md|LEO.md
+.github/agents/orbit.gpt-5-4-mini.experimental.agent.md|ORBIT.md
 .github/templates/anchor-inference-transfer-template-v1.md|templates/anchor-inference-transfer-template-v1.md
 .github/templates/handoff-intro-message-v1.md|templates/handoff-intro-message-v1.md
 .github/templates/operational-addendum-template-v1.md|templates/operational-addendum-template-v1.md

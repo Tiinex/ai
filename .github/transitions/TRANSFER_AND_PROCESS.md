@@ -9,9 +9,11 @@ Do not use this file as a long narrative history, a live state carrier, or a cat
 ## Persistence Governance
 
 - Leo often carries creative and human signal
-- Sigma often carries access, prioritization, and transport
-- Echo flags inference diff and Anchor candidates
-- Anchor implements in source of truth when something should become persistent
+- Sigma often carries structure, prioritization, and transport discipline
+- Echo often flags synthesis tension, canon-near wording, and inference diffs that need clearer classification
+- Myable may surface provisional experiment artifacts or comparison paths when the work is still exploratory
+- Anchor weighs cross-role signal, classifies drift, and recommends source-of-truth placement when something may need higher persistence
+- Human review still decides whether a provisional signal should actually become persistent
 - Role signals like "Leo here" or "Sigma here" work best as low-friction metadata, not heavy onboarding
 - Living signal weighs more heavily than historical artifact; artifacts help bootstrap but do not replace current context
 - When recurring truth, clear friction reduction, or drift is detected, something becomes an artifact candidate
