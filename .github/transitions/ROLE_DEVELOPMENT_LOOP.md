@@ -35,8 +35,10 @@ Use this as the maintained transition artifact for role-development process whil
 - A candidate starts from the maintained role, not from an earlier failed candidate.
 - A candidate is a disposable test surface, not a second evolving truth.
 - If a role file is acting as a candidate surface, mark that in frontmatter with `candidate: true`.
-- If the host surface exposes role names directly, keep the candidate name visibly distinct from the maintained role name in metadata so it is not mistaken for the maintained source during testing or transport. For the current Anchor candidate, preserve `Anchor (Candidate)` rather than `Anchor`.
-- Use parenthetical name disambiguation consistently for metadata-level role variants that would otherwise look like the maintained role in UI or transport. Preserve explicit suffixes such as `Anchor (Candidate)` for candidate state and `Anchor (Any)` when the surface intentionally has no model constraint; if a surface intentionally departs from the repo-default model contract, make that departure visible in the parenthetical name as well.
+- If the host surface exposes role names directly, keep the candidate name visibly distinct from the maintained role name in metadata so it is not mistaken for the maintained source during testing or transport. For the current Anchor candidate, preserve `Anchor (GPT-4.1) (Candidate)` rather than `Anchor`.
+- Use parenthetical name disambiguation consistently for metadata-level role variants that would otherwise look like the maintained role in UI or transport. Preserve explicit suffixes such as `Anchor (Any) (Experimental)` for unconstrained experimental surfaces, `Anchor (GPT-4.1)` for the maintained model-bound surface, and `Anchor (GPT-4.1) (Candidate)` for candidate state.
+- Keep machine-facing file names split-safe and tokenized by role, model slug or `any`, optional lifecycle state, and `agent.md`. Prefer forms such as `<role>.gpt-4-1.experimental.agent.md`, `<role>.gpt-4-1.candidate.agent.md`, or `<role>.any.experimental.agent.md` over dotted model tokens that blur the split boundaries.
+- Treat `experimental: true` and `candidate: true` as different lifecycle signals. Experimental variants may remain repo-visible when they are part of the active transparent testing surface; candidate variants are disposable local test surfaces even when their naming stays explicit.
 - Candidate status should live in frontmatter and process evidence, not in the candidate body itself.
 - Do not add candidate-only meta text, warnings, or identity markers to the runtime body; the body should differ from maintained source only where the tested behavior actually changes.
 
@@ -158,6 +160,7 @@ Use this as the maintained transition artifact for role-development process whil
 - Candidate role files must not survive into build time.
 - If a candidate role file exists locally before cleanup, it should carry `candidate: true` in frontmatter so the file is explicitly marked as a candidate surface.
 - Here, `build time` means any packaging, CI, artifact-generation, or release step that produces files intended to ship or be consumed as a real runtime or transfer surface.
+- Candidate files may be kept out of normal repo publication while still remaining explicitly named locally; experimental files may remain repo-visible when that visibility is part of the current transparency boundary.
 - Non-candidate role variants may exist only when they preserve the maintained role body after agent frontmatter is stripped and line endings are normalized; any allowed variant difference should live in metadata or other explicitly sanctioned non-body configuration.
 - Do not create more role-development files than the repo already needs.
 - New files are justified only for genuinely new roles or genuinely new skills.

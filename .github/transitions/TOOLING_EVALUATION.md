@@ -24,7 +24,7 @@ Do not treat this file as canon, a role definition, or the tooling repo source o
 
 ### Proven Or Near-Proven Support
 
-- Tooling-aware hygiene exists as an explicit workflow surface in `.github/skills/vscode-local-live-chat-hygiene/SKILL.md`.
+- Tooling-aware hygiene now spans a cross-repo split: the AI repo carries a repo-side hygiene and drift-control surface in `.github/skills/vscode-local-live-chat-hygiene/SKILL.md`, while the primary direct-operation workflow skills live in the tooling repo.
 - The repo explicitly distinguishes transport/setup failure from candidate-behavior failure in Anchor companion and temporary investigation artifacts.
 - Session-derived evidence is now treated as more trustworthy than a lagging canonical transcript when the transcript stalls before the latest settled turn.
 - Request participant and custom mode are now treated as separate evidence surfaces for Local custom-agent verification.
@@ -270,12 +270,77 @@ Must demonstrate:
 Failure to watch for:
 - Promotion of tooling-mediated evidence into role judgment without a manual anchor point.
 
+## Minimal Agent-Driven Verification Gate
+
+Use this gate before resuming role development when the open question is not only whether the tooling works in repo, but whether the active AI agent actually routes to the right Local chat workflow skill and uses the tooling with the intended safety model.
+
+Run this gate in a fresh conversation so the result is not polluted by stale preloaded skill state from an older session.
+
+### Gate 1. Create/Send Workflow Competence
+
+Use case:
+- Verify that the agent can start a dedicated Local probe chat with the maintained create/send workflow and continue in the same exact session without reintroducing broad `#agent` or repeated-agent follow-up habits.
+
+Must demonstrate:
+- The agent chooses the maintained create/send workflow surface rather than stale broad repo-side guidance.
+- `create_live_agent_chat` produces a dedicated probe session with the requested agent outcome and expected first-message transport.
+- A same-session follow-up uses `send_message_to_live_agent_chat` without `agentName` unless an intentional rebind is the point of the slice.
+- Bounded persisted evidence confirms a real second request in the same target session.
+
+Failure to watch for:
+- Reusing the working chat instead of creating a dedicated probe.
+- Repeating `agentName` on an ordinary follow-up.
+- Normalizing focused fallback as if it were exact-session proof when the exact session id was already known.
+
+### Gate 2. Persisted-Session Inspection Competence
+
+Use case:
+- Verify that the agent reaches for bounded persisted-session tooling first instead of dropping straight to raw session files.
+
+Must demonstrate:
+- The agent identifies the target session through bounded session tooling.
+- The agent uses compact session reads such as snapshot, index, window, or bounded evidence export before any raw file read.
+- The bounded read is sufficient to classify whether the create/send probe produced a real conversation, sparse bootstrap, or ambiguous evidence.
+
+Failure to watch for:
+- Raw `chatSessions/*.jsonl` reads as the first inspection move.
+- Large transcript export or raw file dumping when a bounded read would answer the question.
+- Confusing a sparse bootstrap stub with a real same-thread interaction.
+
+### Gate 3. Exact Delete Competence
+
+Use case:
+- Verify that the agent can clean up the dedicated probe safely without widening the target set or threatening the working chat.
+
+Must demonstrate:
+- The agent confirms the exact disposable target session id before destructive cleanup.
+- The agent treats visible-tab state as part of the delete lifecycle rather than deleting around it.
+- If exact delete is blocked because a visible tab could only be matched heuristically, the agent first closes the tab explicitly and only then retries exact delete.
+- The probe disappears from the live-chat list after cleanup, and any queued offline cleanup is named explicitly rather than silently assumed.
+
+Failure to watch for:
+- Prefix-id or title-based destructive targeting.
+- Treating a delete blocker as a reason to widen the target set.
+- Declaring cleanup success while the disposable probe is still reopenable as a live chat.
+
+### Passing Rule
+
+- Do not treat one strong-looking tool call as sufficient.
+- The gate passes only when all three workflow classes succeed in the same fresh conversation with bounded evidence and safe cleanup.
+- If one gate fails because of stale repo-side guidance, unresolved routing ambiguity, or host-state contamination, stop role development and repair that tooling/setup layer first.
+
+### Current Known Host Note
+
+- Current live evidence already supports a bounded create/send plus inspection plus exact delete slice, but the delete path can still block on a visible editor chat tab that is attributable only by title until that tab is explicitly closed.
+- Treat that as a real host constraint in the current safety model, not as permission to weaken exact delete targeting.
+
 ## Current Operational Recommendation
 
 - Treat Tiinex tooling as a valuable but still partially constrained support layer for role development.
 - Use it to reduce friction, preserve bounded evidence, and expose transport faults earlier.
 - Do not yet let it outrank high-weight manual Local evidence for Anchor Candidate diagnosis or promotion-gate judgment.
 - When a tooling path is fallback-dependent, host-sensitive, or reload-sensitive, record that explicitly in the run summary rather than flattening it into a generic pass.
+- Do not resume role development merely because the repo-side skill files look cleaner; resume only after the minimal agent-driven verification gate above passes in a fresh conversation.
 
 ## Repo-Level Gap This File Intentionally Closes
 
