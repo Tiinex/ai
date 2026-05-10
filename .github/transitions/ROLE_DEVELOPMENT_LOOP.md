@@ -57,7 +57,7 @@ Use this as the maintained transition artifact for role-development process whil
 - Do not rewrite the failed candidate forward.
 - Preserve only diagnosis, reflection, and next hypothesis outside the candidate.
 - Every new attempt should begin again from maintained source plus the now-updated companion triad.
-- If a slice has already been explicitly kept as valid candidate-level signal, record that keep decision in companion/process evidence and regenerate the next fresh candidate from the approved baseline plus that recorded delta rather than by continuing to patch the failed candidate body forward.
+- If a slice has already been explicitly kept as valid candidate-level signal, record that keep decision in companion/process evidence such as the relevant companion run note, PR text, commit note, or other already-approved durable trace surface, then regenerate the next fresh candidate from the approved baseline plus that recorded delta rather than by continuing to patch the failed candidate body forward.
 
 6. Avoid patch hell explicitly.
 - Do not accumulate corrective layers inside a failed candidate.
@@ -163,7 +163,7 @@ Use this as the maintained transition artifact for role-development process whil
 - Every candidate attempt is a fresh attempt.
 - For an existing role, `fresh attempt` means a fresh candidate rooted in maintained source; for a genuinely new role with no maintained source yet, it means a fresh minimal skeleton rooted in the companion triad rather than in an inherited experimental draft.
 - A candidate should not be treated as OK until the current `test.md` bench has been checked broadly enough to avoid blind spots, with full test coverage as the default expectation.
-- Do not commit a maintained-role change or candidate-derived promotion step until the relevant companion bench and required feedback-loop evidence have both landed; companion/process commits that establish the bench may happen earlier when needed.
+- Do not treat a maintained-role change or candidate-derived promotion artifact as ready to land until the relevant companion bench and required feedback-loop evidence have both landed; ordinary companion/process commits that establish the bench may happen earlier when needed.
 - Missing `tools` frontmatter is a structural failure, not a minor omission; fix it before treating the role surface as valid.
 - Candidate role files must not survive into build time.
 - If a candidate role file exists locally before cleanup, it should carry `candidate: true` in frontmatter so the file is explicitly marked as a candidate surface.
