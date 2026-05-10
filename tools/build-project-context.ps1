@@ -79,6 +79,26 @@ function Test-AgentFrontmatterFlag {
     return [regex]::IsMatch($frontmatterMatch.Groups[1].Value, $pattern)
 }
 
+function Test-AgentFrontmatterKey {
+    param(
+        [string]$Path,
+        [string]$KeyName
+    )
+
+    $content = Get-Content -Path $Path -Raw
+    if (-not $content.StartsWith('---')) {
+        return $false
+    }
+
+    $frontmatterMatch = [regex]::Match($content, '^---\r?\n(.*?)\r?\n---\r?\n?', 'Singleline')
+    if (-not $frontmatterMatch.Success) {
+        return $false
+    }
+
+    $pattern = '(?m)^' + [regex]::Escape($KeyName) + '\s*:'
+    return [regex]::IsMatch($frontmatterMatch.Groups[1].Value, $pattern)
+}
+
 function Get-NormalizedAgentBody {
     param([string]$Path)
 
@@ -129,10 +149,17 @@ function Assert-AgentVariantBodiesMatch {
     }
 
     $candidateErrors = @()
+    $toolsErrors = @()
     $variantMismatches = @()
     $agentInfos = Get-ChildItem -Path $agentsDir -Filter '*.agent.md' -File |
         ForEach-Object { Get-AgentVariantInfo -File $_ } |
         Where-Object { $null -ne $_ }
+
+    foreach ($info in $agentInfos) {
+        if (-not (Test-AgentFrontmatterKey -Path $info.File.FullName -KeyName 'tools')) {
+            $toolsErrors += "$($info.File.Name): role files must carry explicit tools frontmatter"
+        }
+    }
 
     foreach ($info in $agentInfos | Where-Object { $_.IsCandidate }) {
         if (-not (Test-AgentFrontmatterFlag -Path $info.File.FullName -FlagName 'candidate' -ExpectedValue 'true')) {
@@ -164,8 +191,8 @@ function Assert-AgentVariantBodiesMatch {
         }
     }
 
-    if ($candidateErrors.Count -gt 0 -or $variantMismatches.Count -gt 0) {
-        $details = @($candidateErrors + $variantMismatches) -join [Environment]::NewLine
+    if ($toolsErrors.Count -gt 0 -or $candidateErrors.Count -gt 0 -or $variantMismatches.Count -gt 0) {
+        $details = @($toolsErrors + $candidateErrors + $variantMismatches) -join [Environment]::NewLine
         Write-Error "Agent variant body check failed:$([Environment]::NewLine)$details"
         exit 1
     }

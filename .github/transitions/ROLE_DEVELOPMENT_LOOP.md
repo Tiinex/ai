@@ -35,6 +35,7 @@ Use this as the maintained transition artifact for role-development process whil
 - A candidate starts from the maintained role, not from an earlier failed candidate.
 - A candidate is a disposable test surface, not a second evolving truth.
 - If a role file is acting as a candidate surface, mark that in frontmatter with `candidate: true`.
+- Every role file, including maintained, experimental, and candidate variants, must carry explicit `tools` frontmatter. Do not rely on implicit defaults or memory for tool policy.
 - If the host surface exposes role names directly, keep the candidate name visibly distinct from the maintained role name in metadata so it is not mistaken for the maintained source during testing or transport. For the current Anchor candidate, preserve `Anchor (GPT-4.1) (Candidate)` rather than `Anchor`.
 - Use parenthetical name disambiguation consistently for metadata-level role variants that would otherwise look like the maintained role in UI or transport. Preserve explicit suffixes such as `Anchor (Any) (Experimental)` for unconstrained experimental surfaces, `Anchor (GPT-4.1)` for the maintained model-bound surface, and `Anchor (GPT-4.1) (Candidate)` for candidate state.
 - Keep machine-facing file names split-safe and tokenized by role, model slug or `any`, optional lifecycle state, and `agent.md`. Prefer forms such as `<role>.gpt-4-1.experimental.agent.md`, `<role>.gpt-4-1.candidate.agent.md`, or `<role>.any.experimental.agent.md` over dotted model tokens that blur the split boundaries.
@@ -157,6 +158,7 @@ Use this as the maintained transition artifact for role-development process whil
 - A failed candidate is discarded, not patched.
 - Every candidate attempt is a fresh attempt.
 - A candidate should not be treated as OK until the current `test.md` bench has been checked broadly enough to avoid blind spots, with full test coverage as the default expectation.
+- Missing `tools` frontmatter is a structural failure, not a minor omission; fix it before treating the role surface as valid.
 - Candidate role files must not survive into build time.
 - If a candidate role file exists locally before cleanup, it should carry `candidate: true` in frontmatter so the file is explicitly marked as a candidate surface.
 - Here, `build time` means any packaging, CI, artifact-generation, or release step that produces files intended to ship or be consumed as a real runtime or transfer surface.
