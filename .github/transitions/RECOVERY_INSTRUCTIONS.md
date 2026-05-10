@@ -18,7 +18,7 @@ Status:
 Hard:
 - Treat `flooding -> compact -> inference drift -> worse decisions -> more drift` as an active stability chain, not a cosmetic quality issue.
 - Keep the current error classes separate: `routing error`, `recoverability error`, and `propagation error`.
-- `routing error` was intentionally handled first in `ai-vscode-recovery-tooling`; repo-level routing guards now exist there.
+- `routing error` was intentionally handled first in `ai-vscode-tools`; repo-level routing guards now exist there.
 - The next repo-level slice is `recoverability error` in this AI repo, not broader role propagation.
 
 Soft:
