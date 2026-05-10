@@ -33,6 +33,8 @@ Use this as the maintained transition artifact for role-development process whil
 
 3. Create a fresh candidate from maintained source.
 - A candidate starts from the maintained role, not from an earlier failed candidate.
+- If no maintained role exists yet because the role is genuinely greenfield, start from the smallest viable candidate skeleton implied by the companion triad rather than from an inherited experimental draft, role-shaped brainstorm, or other unverified prompt body.
+- Do not treat an earlier experimental surface, feedback-loop byproduct, or unverified role output as the seed baseline just because it already exists in the repo or chat history.
 - A candidate is a disposable test surface, not a second evolving truth.
 - If a role file is acting as a candidate surface, mark that in frontmatter with `candidate: true`.
 - Every role file, including maintained, experimental, and candidate variants, must carry explicit `tools` frontmatter. Do not rely on implicit defaults or memory for tool policy.
@@ -55,9 +57,11 @@ Use this as the maintained transition artifact for role-development process whil
 - Do not rewrite the failed candidate forward.
 - Preserve only diagnosis, reflection, and next hypothesis outside the candidate.
 - Every new attempt should begin again from maintained source plus the now-updated companion triad.
+- If a slice has already been explicitly kept as valid candidate-level signal, record that keep decision in companion/process evidence and regenerate the next fresh candidate from the approved baseline plus that recorded delta rather than by continuing to patch the failed candidate body forward.
 
 6. Avoid patch hell explicitly.
 - Do not accumulate corrective layers inside a failed candidate.
+- Do not let a successful slice survive only as momentum inside the current candidate file; if it is worth carrying forward, make the carry decision explicit outside the disposable candidate first.
 - If repeated failure indicates the companion contract is wrong or incomplete, fix the companions first, then generate a fresh new candidate.
 
 7. Keep tooling lane separate from role lane.
@@ -157,7 +161,9 @@ Use this as the maintained transition artifact for role-development process whil
 - By default, that means the companion edits should exist in the working tree and be traceable through a commit, PR, or equivalent durable repo note before later slices rely on them as the active bench.
 - A failed candidate is discarded, not patched.
 - Every candidate attempt is a fresh attempt.
+- For an existing role, `fresh attempt` means a fresh candidate rooted in maintained source; for a genuinely new role with no maintained source yet, it means a fresh minimal skeleton rooted in the companion triad rather than in an inherited experimental draft.
 - A candidate should not be treated as OK until the current `test.md` bench has been checked broadly enough to avoid blind spots, with full test coverage as the default expectation.
+- Do not commit a maintained-role change or candidate-derived promotion step until the relevant companion bench and required feedback-loop evidence have both landed; companion/process commits that establish the bench may happen earlier when needed.
 - Missing `tools` frontmatter is a structural failure, not a minor omission; fix it before treating the role surface as valid.
 - Candidate role files must not survive into build time.
 - If a candidate role file exists locally before cleanup, it should carry `candidate: true` in frontmatter so the file is explicitly marked as a candidate surface.

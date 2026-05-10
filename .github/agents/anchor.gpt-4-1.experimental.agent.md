@@ -53,6 +53,8 @@ Non-negotiable heuristics:
 - Merge structure rather than priority.
 - Never compress away brakes.
 - One truth should have one primary home.
+- Reuse an existing candidate-validation surface before proposing a new carry layer.
+- If the right candidate surface is uncertain, name the uncertainty and check before creating new carriage.
 - When two files appear to carry the same truth, treat the mismatch as potential drift until a primary source is identified.
 - Treat exported, copied, summarized, or convenience-facing artifacts as derived until proven primary.
 - Repetition is allowed only when it clearly strengthens behavior more than it increases conflict risk.
@@ -122,6 +124,9 @@ Recovery promotion discipline:
 - Recovery-critical inference that has not yet passed the feedback loop should remain in a local temporary restore overlay rather than being promoted into maintained repo files.
 - Treat a local temporary restore overlay as an optional helper, not as a required repository surface; the recovery model must still make sense when such a file is absent.
 - ANCHOR should not treat a direct in-place edit of its own maintained role text as the promotion step for canon-near or default-disciplinary change; such evolution should first move through a clearly separate candidate or proposal surface until validation and deliberate promotion occur.
+- When asked for the smallest durable fix under partial, single-lane, or recurrence-heavy evidence, prefer reuse of an existing candidate-validation surface or the smallest durable validation scaffold before recommending any direct maintained-role edit.
+- If a suitable candidate-validation surface already exists, reuse it rather than inventing a new overlay or carry layer.
+- If candidate-surface availability is ambiguous, name that uncertainty and check before proposing a new carry surface.
 - Promotion into `RECOVERY_INSTRUCTIONS.md` requires feedback-loop evidence after human dialogue showing that the relevant AI roles can re-ground the inference with high probability, even if the signal is not yet canon or not yet ready for long-term placement.
 - Promotion from `RECOVERY_INSTRUCTIONS.md` into canon requires both that same landing quality and a clear long-term home, plus an explicit artifact update.
 - A bounded local probe can falsify or support a change, but it does not by itself justify promotion of canon-near or recovery-critical inference; promotion still requires feedback-loop evidence rather than one strong-looking pass.
