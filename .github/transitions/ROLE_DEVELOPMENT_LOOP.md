@@ -26,14 +26,17 @@ Use this as the maintained transition artifact for role-development process whil
 - The companion triad is the contract the candidate is being tested against, not a retrospective note after the candidate already exists.
 - By default, keep the active role's companion triad together under `.github/agents/companions/<role>/` so ownership and lookup stay explicit.
 - `design.md` should carry intended behavior and failure modes, `test.md` should carry the active bench and judgment gates, and `testdata.md` should carry canonical cases, prompt skeletons, or other reusable run support for that role.
+- This requirement is for active role development and drift control. Do not reinterpret it as a blanket runtime requirement that the role can only function when companion files are present.
 
 2. Define one narrow hypothesis.
 - Do not create a candidate for a vague improvement pass.
 - Name one specific behavior change to test.
+- Keep the candidate mutation small enough that a later pass or fail can still be attributed to one narrow behavioral hypothesis rather than to a bundled rewrite.
 
 3. Create a fresh candidate from maintained source.
 - A candidate starts from the maintained role, not from an earlier failed candidate.
 - If no maintained role exists yet because the role is genuinely greenfield, start from the smallest viable candidate skeleton implied by the companion triad rather than from an inherited experimental draft, role-shaped brainstorm, or other unverified prompt body.
+- An `experimental` role surface does not count as maintained source by default. Treat it as reference material unless the repo and human steering explicitly promote it into the maintained baseline.
 - Do not treat an earlier experimental surface, feedback-loop byproduct, or unverified role output as the seed baseline just because it already exists in the repo or chat history.
 - A candidate is a disposable test surface, not a second evolving truth.
 - If a role file is acting as a candidate surface, mark that in frontmatter with `candidate: true`.
@@ -56,13 +59,18 @@ Use this as the maintained transition artifact for role-development process whil
 5. If the candidate fails, discard it.
 - Do not rewrite the failed candidate forward.
 - Preserve only diagnosis, reflection, and next hypothesis outside the candidate.
+- Do not let a failed attempt taint already confirmed inference. Approved baseline signal should remain outside the failed candidate so discard stays clean, while later clean baseline updates may still revise that signal when new evidence justifies it.
 - Every new attempt should begin again from maintained source plus the now-updated companion triad.
 - If a slice has already been explicitly kept as valid candidate-level signal, record that keep decision in companion/process evidence such as the relevant companion run note, PR text, commit note, or other already-approved durable trace surface, then regenerate the next fresh candidate from the approved baseline plus that recorded delta rather than by continuing to patch the failed candidate body forward.
+- If a freshly regenerated candidate repeats the same exercised behavioral fail under a valid local same-chat diagnostic slice, stop treating the problem as candidate-body wording rescue. Classify the recurrence as process-learning evidence about placement, baseline, or validation discipline, update those maintained process or companion surfaces first, and discard the repeated-fail candidate completely before any new attempt.
 
 6. Avoid patch hell explicitly.
 - Do not accumulate corrective layers inside a failed candidate.
 - Do not let a successful slice survive only as momentum inside the current candidate file; if it is worth carrying forward, make the carry decision explicit outside the disposable candidate first.
+- Treat confirmed inference as a protected baseline, not as material to be reworked inside the next failed attempt; revise that baseline only through a clean evidence-backed update rather than by carrying failed-candidate residue forward.
 - If repeated failure indicates the companion contract is wrong or incomplete, fix the companions first, then generate a fresh new candidate.
+- If repeated failure survives a fresh rebuild and the same slice still misses cleanly, improve the role-development process around that slice before generating another candidate; do not respond with progressively narrower rescue wording inside the discarded candidate surface.
+- If one candidate iteration adds enough instruction mass that causal attribution becomes unclear, fail that attempt fast as an oversized mutation rather than trying to infer which line caused the behavior. Split the change into smaller slices, then regenerate a fresh candidate.
 
 7. Keep tooling lane separate from role lane.
 - Tooling should first prove transport quality, targeting quality, evidence quality, and cleanup quality.
@@ -132,6 +140,8 @@ Use this as the maintained transition artifact for role-development process whil
 - Each test has a `source role` and a `target role`.
 - The normal feedback loop should use maintained roles and human roles as source-role coverage, with the target role itself included when that perspective is useful.
 - A candidate role may enter the loop when it is the target under test or when a bounded root-cause follow-up needs the candidate's own reading.
+- Do not treat the candidate as silent by default when the slice is about candidate behavior. Let the candidate answer the non-leading probe in its own test lane and use that same-chat reading as part of the evidence.
+- Candidate speech is diagnostic evidence, not a substitute for maintained-role or human source-role coverage. The candidate's own lane does not by itself satisfy the distinct-lane requirement for promotion-oriented judgment.
 - Extra role variants should not be part of the normal feedback loop and should not be treated as default validation surfaces going forward unless the user has explicitly asked for that path.
 - Inclusion does not mean flat usage or equal weight in every single slice.
 - Use the smallest relevant slice at a time, but make sure the broader loop still covers the maintained and human source-role viewpoints whose perspective could expose blind spots in the current question.
@@ -147,8 +157,11 @@ Use this as the maintained transition artifact for role-development process whil
 - If roles begin producing operational output inside the feedback loop, treat that as a warning signal that the loop is collapsing out of diagnosis and into execution too early.
 - `Anchor` should explicitly protect this boundary and keep the loop non-operational until it has judged that the loop has done its job and the next step may change status.
 - Human feedback may come later in the validation loop, because the human is observing for deviations the AI roles may miss and can then add steering or queued feedback based on those observations.
+- Do not insert artificial pause points between iteration cycles just to wait for human input. Continue iterating unless a real gate, safety stop, slice failure, or maintained-process validation need appears, and weigh human steering, observations, or screenshots as late-lane evidence when they arrive during runtime.
+- Mid-cycle human steering is evidence, not an automatic override of stronger maintained process signal. Classify and weigh it inside the loop; it may change diagnosis or the next hypothesis without turning runtime arrival by itself into canon or promotion authority.
 - If a candidate shows a valid behavioral fail, do one non-leading follow-up to diagnose root cause before deciding the next hypothesis.
 - If the failure is actually transport/setup failure, contamination, or ambiguous diagnostics, classify that first and do not treat it as behavioral root-cause evidence.
+- Treat rendered workspace summaries or attached-root omission as secondary evidence only. If the same live surface can directly read a target-local role or companion file, do not classify setup failure from summary omission alone.
 - After the relevant test slice is complete, schedule the disposable test chat for delete.
 - Cleanup of disposable test chats is part of the loop, not optional hygiene after the fact.
 - Unless a chat is being deliberately kept for active diagnosis, close and delete the disposable test chat after the slice so old probe state does not linger and distort later readings.
@@ -190,6 +203,11 @@ Use this as the maintained transition artifact for role-development process whil
 - `clean tooling pass` is not `maintained-role evidence` by itself.
 - A candidate should be promoted only after the relevant feedback-loop evidence exists, not because one slice looked strong.
 - A valid behavioral fail may justify a non-leading root-cause follow-up; a setup fail does not.
+- If a create path opens only a `chatEditingSessions` draft and never yields a persisted `chatSessions` session id, classify that as transport/setup failure for the slice rather than as candidate grounding evidence.
+- Broad auto-attached instruction files from other workspace folders are environmental context, not first-pass role-local grounding evidence, unless the exercised slice is directly about those surfaces.
+- If target-local visibility has been independently confirmed on the same live surface through a direct read, do not treat rendered workspace-root omission as sufficient setup-fail evidence by itself.
+- Attached prompt files used to dispatch or anchor a live chat request are transport scaffolding, not repo grounding artifacts for current repo-state classification.
+- An oversized candidate-body mutation that prevents clear causal attribution is a process failure for the slice, even if the resulting body looks plausible.
 
 ## Placement Discipline
 
@@ -202,6 +220,7 @@ Use this as the maintained transition artifact for role-development process whil
 - Do not let role development depend on chat-only memory.
 - Do not let candidate iteration produce patch hell.
 - Do not let tooling evidence silently upgrade itself into role evidence.
+- Do not let unrelated cross-repo auto-attached instruction surfaces outrank the target role's own file, companions, or role-local process artifacts during current repo-state grounding.
 - Do not let the feedback loop collapse into operational output before diagnosis is complete.
 - Do not let candidate residue survive into shipping or build surfaces.
 - Do not let variant convenience turn into silent body drift across maintained role variants.
