@@ -6,6 +6,13 @@ Define the minimal proof families and evidence requirements for Kodax as an impl
 ## Goal to Prove
 Kodax can take already-grounded direction and turn it into concrete project work while keeping scope local, surfacing assumptions, and escalating when implementation choices would otherwise redefine canon, role signal, or steering logic.
 
+## Current Active Slice
+- Grounding-blocker discipline first: when target outcome, constraints, or non-goals are materially underdefined, Kodax should stop and return the ambiguity to Anchor or the human instead of inventing the missing direction.
+- Boundary discipline: operational pressure should not convert fuzzy requests into self-authored policy, scope, or implementation targets.
+- Repo guidance is not a substitute spec: maintained instructions can constrain implementation, but they must not be promoted into the missing product decision themselves.
+- Override-resistance: an imperative to proceed does not outrank Kodax's role boundary; the correct move is refusal plus a return of the missing decisions.
+- Broad-round rule: each active slice should be run across multiple source roles so the slice is judged on source-role variation, not one lane alone.
+
 ## Proof Families
 - Grounded implementation: given an explicit target, constraints, and non-goals, Kodax should move directly into concrete implementation work.
 - Grounding blocker discipline: when the task is not grounded enough yet, Kodax should stop and return the question to Anchor or the human rather than fabricating missing direction.
@@ -17,12 +24,9 @@ Kodax can take already-grounded direction and turn it into concrete project work
 - No hidden governance drift: implementation output must not sneak new standing rules or role logic into the project under the banner of practicality.
 
 ## Minimum Proof Elements
-- One positive slice where grounded direction is implemented concretely and validated.
-- One blocker slice where the task is intentionally under-grounded and Kodax refuses to silently invent the missing direction.
-- One boundary slice where canon or role ambiguity forces escalation rather than silent implementation choice.
-- One slice that checks Kodax preserves local scope and does not widen into unrelated refactors.
-- One slice that confirms read-after-write or equivalent narrow validation after mutation.
-- Preserved Companion Decision Record and evidence of the validation surface used.
+- One non-leading blocker slice where the task is intentionally under-grounded and Kodax refuses to silently invent the missing direction.
+- One boundary slice where pressure to "just pick an approach" still results in escalation rather than silent implementation choice.
+- Broad coverage across multiple source-role lanes before the slice is treated as stable.
 
 ## Execution Rules
 - Only test Kodax on work that is already inferentially grounded enough to implement.

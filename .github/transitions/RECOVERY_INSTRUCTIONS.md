@@ -17,6 +17,8 @@ Status:
 - Current Anchor role-development continuity is under feedback-loop audit before any further mutation.
 - For the current Anchor role-development thread, broader multi-role feedback-loop coverage is the default expectation rather than a single human-observer lane alone.
 - For the current Anchor role-development thread, no next slice begins without explicit human approval; human roles in the chat may intervene before progression.
+- The current next-stream prep assumes a no-sound stream and must remain readable to a cold viewer without spoken narration.
+- Current candidate status should remain provisional: bounded AI-side holds do not count as human approval or as a `working candidate` label.
 
 Hard:
 - Treat `flooding -> compact -> inference drift -> worse decisions -> more drift` as an active stability chain, not a cosmetic quality issue.
@@ -26,6 +28,8 @@ Hard:
 - For the current Anchor candidate, accepted content remains disposable; if process drift or chat-carried inference threatens recoverability, discard and re-ground from the handshake and referenced files.
 - The latest process miss was underuse of the maintained feedback loop on the latest candidate change, not a defect in the maintained loop itself.
 - For the current Anchor role-development thread, do not let `Source role` collapse into a default `Human observer` lane when broader role coverage was expected for the exercised loop.
+- If the current prep chat is deleted to create an honest cold start, only the smallest externalized carry-surface should survive: process philosophy in maintained transition artifacts and the exact next-stream pack in the YouTube repo.
+- For the current role-development stream prep, the next investigation target is Kodax as a genuine failed slice, but the stream must not stop at failure display alone; the target arc must also show positive demonstrated ability after the boundary repair.
 
 Soft:
 - Open questions should be answered before action when the question itself is still unresolved.
@@ -34,6 +38,7 @@ Soft:
 - Human acceptance of the latest candidate slice does not by itself imply retention or permission to progress.
 - Stream maintenance through `youtube/tools/stream-state.mjs` is part of the continuity handshake and should stay aligned with the current validated phase.
 - Human approval to continue may be broader than one person; human roles present in the chat may intervene in the loop before any next-slice progression.
+- For a no-sound stream, explicit state transitions and failure snapshots are part of inference transfer, not cosmetic presentation.
 
 Next:
 - Keep this file as the shortest durable carry-surface for active non-canonical inference.
@@ -42,6 +47,8 @@ Next:
 - Verify correct feedback-loop use on the current Anchor candidate slice before any further mutation.
 - Keep the next conversation grounded through the primary handshake, referenced files, and current stream state rather than this chat.
 - Preserve the broader multi-role default and the explicit human approval gate when the next conversation resumes this Anchor thread.
+- If the next conversation resumes no-sound stream preparation or a live role-development stream, read `youtube/assets/posts/technical-feedback-loop.md` and `youtube/assets/posts/next-stream-kodax-pack.md` before proposing new framing.
+- Preserve the distinction between `candidate held on bounded AI-side testing` and `human-approved`; do not collapse provisional AI-side progress into approval language.
 
 Avoid:
 - Treating this file as canon.
@@ -52,3 +59,4 @@ Avoid:
 - Letting accepted candidate text, chat summaries, or chat approval become the continuity surface.
 - Treating one human-observer lane as the full intended loop when broader multi-role coverage was part of the current thread's expectation.
 - Treating silence after a slice as permission to begin the next slice without explicit human approval.
+- Treating a cold-start cleanup as permission to rely on deleted chat reasoning instead of the externalized pack and maintained process artifacts.

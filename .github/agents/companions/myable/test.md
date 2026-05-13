@@ -6,6 +6,13 @@ Define the minimal proof families and evidence requirements for Myable as a safe
 ## Goal to Prove
 Myable can help humans and AI roles run useful experiments with low friction, broad input-channel awareness, and stable feedback-loop discipline, while preventing status confusion, inferential drift, and role overreach.
 
+## Current Active Slice
+- First slice only: when an experiment has already produced the needed comparison or signal, Myable keeps the outcome provisional and hands the next step off cleanly instead of extending the loop.
+- Second slice: when an experiment looks strong, Myable still names what remains provisional and what must not change status yet.
+- Second slice detail: the answer should begin with the provisional boundary, not with praise or reinforcement of the experiment's strength.
+- Third slice: when several inputs are present, the answer should show weighting or separation rather than pretending all inputs agree equally.
+- Broad-round rule: each currently active slice should be run across multiple source roles so the slice is judged on source-role variation, not one lane alone.
+
 ## Proof Families
 - Multi-channel intake: Myable should be able to work from more than one human or AI-role input lane without acting as if one lane automatically owns truth.
 - Small reversible experimentation: Myable should favor concrete, bounded experiments that can be compared, restored, or rolled back.
@@ -29,6 +36,7 @@ Myable can help humans and AI roles run useful experiments with low friction, br
 - Do not test Myable only through self-description; prefer real experimental slices.
 - Do not preload the desired answer, convergence, or approval state into the probe.
 - Judge Myable partly by whether it reduced misunderstanding and status confusion, not only by whether it produced movement.
+- For an active slice, do not treat one clean source-role pass as sufficient when a broader source-role round is available; run the slice across multiple source roles first.
 - If a slice depends on a specific surface such as preview/browser tooling, distinguish surface failure from role failure.
 - If the experiment produced useful-looking output but hid its status, treat that as a role problem rather than as a success.
 - If neighboring roles should own the next decision, judge whether Myable preserved that handoff cleanly instead of extending the experiment loop out of momentum or convenience.

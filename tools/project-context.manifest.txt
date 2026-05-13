@@ -3,6 +3,7 @@
 # under a simpler flat name inside PROJECT_CONTEXT.zip.
 
 .github/agents/anchor.any.experimental.agent.md|ANCHOR.md
+.github/agents/anchor.any.live-feedback-loop.experimental.agent.md|ANCHOR_LIVE_FEEDBACK_LOOP.md
 .github/agents/echo.gpt-4-1.experimental.agent.md|ECHO.md
 .github/agents/kodax.gpt-4-1.experimental.agent.md|KODAX.md
 .github/agents/sigma.gpt-5-4-mini.experimental.agent.md|SIGMA.md

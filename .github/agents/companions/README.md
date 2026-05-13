@@ -26,6 +26,7 @@ Current roles
 - `leo/`
 - `myable/`
 - `orbit/`
+- `parallax/`
 
 Workflow
 
