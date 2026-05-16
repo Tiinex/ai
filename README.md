@@ -17,6 +17,14 @@ The goal is not to ship a giant all-in-one system. The goal is to keep a small c
 - If you want to inspect the role sources and explicit variants directly, go to `.github/agents/`.
 - If you want to understand how cloud behavior is tested and kept in sync, read `.github/skills/chatgpt-cloud-project-testing/`.
 
+## VS Code Setup
+
+- This repo recommends the published `Tiinex — AI — VS Code — Tools` extension through `.vscode/extensions.json` for people who clone the repo and want the companion Local chat tooling.
+- If you are developing Tiinex extensions locally, do not rely on a packaged install as the default iteration path.
+- For local extension development, prefer a repo-linked dev path or an Extension Development Host so reloads target the repo copy you are editing.
+- On Windows, the current repo-local bootstrap for `ai-vscode-tools` is `ai-vscode-tools/scripts/ensure-windows-main-host-dev-extension-link.ps1`.
+- The companion YouTube repo keeps the same pattern under `youtube/vscode-extension/scripts/ensure-windows-main-host-dev-extension-link.ps1`.
+
 ## What This Repo Helps With
 
 - preserving signal across chats, tools, and handoffs
