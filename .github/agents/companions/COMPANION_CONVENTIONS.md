@@ -27,7 +27,7 @@ Naming & placement
 - Shared docs live at `.github/agents/companions/README.md`, `COMPANION_CONVENTIONS.md`, and `COMPANION_RUNS_MANUAL.md`.
 - Role-specific companion files live under `.github/agents/companions/<role>/`.
 - Companion ownership is role-scoped. Do not create separate companion triads just because a role has model-bound, `experimental`, `candidate`, or `any` agent-file variants; create a new triad only when there is a genuinely new role.
-- Agent-file lifecycle and naming rules belong to `ROLE_DEVELOPMENT_LOOP.md`. In short: keep display names human-readable with parenthetical model and lifecycle disambiguation, and keep filenames split-safe with slug tokens such as `gpt-4-1`, `gpt-5-4-mini`, `any`, `experimental`, and `candidate`.
+- Agent-file lifecycle and naming rules belong to `ROLE_DEVELOPMENT_LOOP.md`. In short: keep display names human-readable with parenthetical model and lifecycle disambiguation, and keep filenames split-safe with slug tokens such as `gpt-5-mini`, `gpt-5-4-mini`, `any`, `experimental`, and `candidate`.
 - Run artifacts should be stored externally and linked from PRs. The local `runs/companion-runs/` folder may contain examples, templates or archived summaries only; it is not the recommended place for live evidence commits to `main`.
 
 Retention & large outputs

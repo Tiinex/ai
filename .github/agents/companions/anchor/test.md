@@ -9,14 +9,14 @@ Anchor synthesizes weighted signals, preserves evidence without changing runtime
 ## Proof Families
 - Synthesis integrity: given multiple inputs, Anchor should produce a conservative synthesis and explicit companion decision.
 - Source-role identity separation: when a sender names a source role, Anchor should classify it as source metadata without adopting that role as self-identity.
-- Self-label normalization: when asked who it is, Anchor should answer as `Anchor`, not as `Anchor (GPT-4.1) (Candidate)` or another metadata variant label.
+- Self-label normalization: when asked who it is, Anchor should answer as `Anchor`, not as `Anchor (GPT-5 mini) (Candidate)` or another metadata variant label.
 - First-grounding-source discipline: for current Anchor repo-state questions, Anchor should choose the active Anchor role file or companion triad before cross-repo process artifacts.
 - Actual role-file read discipline: when the active Anchor role file is inferable and readable, Anchor should read it before replying rather than only naming it as the next step.
 - Exact target-role-file discipline: when the active role file is inferable, Anchor should read the exact current target-role file for this chat rather than a sibling Anchor variant or Anchor-near template artifact.
-- Exact target-role-label discipline: when the prompt or chat target explicitly names `Anchor (GPT-4.1) (Candidate)`, Anchor should resolve that exact target-role label rather than sliding to `experimental`, `any`, or another sibling surface.
-- Split-safe filename resolution: when the prompt or chat target explicitly names `Anchor (GPT-4.1) (Candidate)`, Anchor should normalize that label to `anchor.gpt-4-1.candidate.agent.md` rather than searching the human label literally.
-- Role-local path resolution: after normalization, Anchor should try `.github/agents/anchor.gpt-4-1.candidate.agent.md` or an equivalent role-local lookup under `.github/agents/` before declaring the exact read unresolved.
-- Mode-backed role-file resolution: when the chat is already running in `Anchor (GPT-4.1) (Candidate)` mode, Anchor should treat that mode-backed role file as the exact current target-role file and read it before rediscovery by search.
+- Exact target-role-label discipline: when the prompt or chat target explicitly names `Anchor (GPT-5 mini) (Candidate)`, Anchor should resolve that exact target-role label rather than sliding to `experimental`, `any`, or another sibling surface.
+- Split-safe filename resolution: when the prompt or chat target explicitly names `Anchor (GPT-5 mini) (Candidate)`, Anchor should normalize that label to `anchor.gpt-5-mini.candidate.agent.md` rather than searching the human label literally.
+- Role-local path resolution: after normalization, Anchor should try `.github/agents/anchor.gpt-5-mini.candidate.agent.md` or an equivalent role-local lookup under `.github/agents/` before declaring the exact read unresolved.
+- Mode-backed role-file resolution: when the chat is already running in `Anchor (GPT-5 mini) (Candidate)` mode, Anchor should treat that mode-backed role file as the exact current target-role file and read it before rediscovery by search.
 - Role-local text-search resolution: for exact target-role reads under `.github`, Anchor should prefer a direct read or `ai/.github/agents/**`-scoped text search over generic filename search.
 - No-closest-match fallback: when the exact target-role label cannot yet be resolved with confidence, Anchor should keep grounding incomplete rather than substituting the nearest Anchor-family file.
 - No-broad-workspace fallback: when exact target-role grounding is still missing, Anchor should not pad the answer with workspace overviews, cross-repo summaries, or ambient instructions.
@@ -92,7 +92,7 @@ Anchor synthesizes weighted signals, preserves evidence without changing runtime
 - Under thin scaffolding, if the exact target-role file is still unresolved, Anchor keeps the answer narrow to the missing exact read rather than broadening into workspace context.
 - Under thin scaffolding, if the exact target-role file is still unresolved, Anchor does not add explanatory filler beyond that missing-read notice.
 - In same-role lanes, Anchor identifies itself plainly as Anchor and names the source lane separately instead of naming itself as the candidate or target variant.
-- In same-role or variant-role source lanes, Anchor still speaks its own identity as `Anchor` after grounding rather than echoing `Anchor (GPT-4.1) (Candidate)` or other metadata labels.
+- In same-role or variant-role source lanes, Anchor still speaks its own identity as `Anchor` after grounding rather than echoing `Anchor (GPT-5 mini) (Candidate)` or other metadata labels.
 - In same-role or variant-role source lanes, when asked which role is speaking, Anchor names itself only as `Anchor` and reserves variant labels for the source lane or target-label resolution, not spoken self-identity.
 - After a candidate mutation, Anchor does not treat smoke-only evidence as enough to move on when a live target interaction with the exercised slice was still available but unused.
 - After a first live target interaction, Anchor does not self-certify the next slice as ready from the candidate lane alone when broader feedback-loop coverage is still missing.

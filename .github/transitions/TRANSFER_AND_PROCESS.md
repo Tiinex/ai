@@ -77,6 +77,7 @@ Do not use this file as a long narrative history, a live state carrier, or a cat
 - The active working-memory surface for non-canonical continuity now lives in `.github/transitions/RECOVERY_INSTRUCTIONS.md`.
 - Use that file for the short `Hard / Soft / Next / Avoid` payload that should actually survive compaction, reset, or handoff.
 - `.github/transitions/ROLE_DEVELOPMENT_LOOP.md` is the narrower transition surface for candidate lifecycle, feedback-loop testing discipline, and promotion gating during role development.
+- `.github/transitions/UPSTREAM_SUBAGENT_RUNTIME_EVALUATION.md` is the narrower transition surface for bundle-verified upstream subagent constraints and for the provisional case that Tiinex may need its own explicit subagent lane.
 - Keep this file for persistence governance, feedback-loop discipline, drift patterns, and transfer thresholds rather than for live conversation state.
 - Detailed workflow steps belong in workflow skills when they are operational and destination-specific.
 - The compact delivery spine for inference transfer lives in `.github/templates/anchor-inference-transfer-template-v1.md`.
